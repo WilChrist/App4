@@ -13,5 +13,13 @@ namespace App4
 		{
 			InitializeComponent();
 		}
-	}
+        public void EtudiantItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new EtudiantPage());
+        }
+        public void FiliereItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new FilierePage());
+        }
+    }
 }

@@ -16,4 +16,13 @@
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="EtudiantPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FilierePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

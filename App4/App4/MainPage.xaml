@@ -4,8 +4,9 @@
              xmlns:local="clr-namespace:App4"
              x:Class="App4.MainPage">
 
-	<Label Text="Welcome to Xamarin.Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Etudiant" Activated="EtudiantItem_Activeted"/>
+        <ToolbarItem Text="Filière" Activated="FiliereItem_Activeted"/>
+    </ContentPage.ToolbarItems>
 
 </ContentPage>

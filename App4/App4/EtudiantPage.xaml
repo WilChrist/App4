@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App4.EtudiantPage">
+    <ContentPage.Content>
+        <StackLayout Margin="10,10,10,10">
+            
+            <Entry Placeholder="Entrer Votre Id de Filière"/>
+            <Entry  Placeholder="Entrer Votre Nom"/>
+            <Entry Placeholder="Entrer Votre Prénom"/>
+            <Entry Placeholder="Entrer Votre Adresse"/>
+            <Entry Placeholder="Entrer Votre Numéro de Téléphone"/>
+            <Entry Placeholder="Entrer Votre Image"/>
+            <Entry Placeholder="Entrer Votre Sexe"/>
+            <DatePicker />
+
+            <Button Text="Enregistrer" 
+                    Clicked="Enregistrer_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
