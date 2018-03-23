@@ -9,12 +9,23 @@ namespace App4
 {
 	public partial class App : Application
 	{
-		public App ()
+        static string DB_PATH;
+
+        public static string DB_PATH1 { get => DB_PATH; set => DB_PATH = value; }
+
+
+        public App ()
 		{
 			InitializeComponent();
 
 			MainPage = new NavigationPage(new MainPage());
 		}
+        public App(string DB_path)
+        {
+            InitializeComponent();
+            DB_PATH = DB_path;
+            MainPage = new NavigationPage(new MainPage());
+        }
 
 		protected override void OnStart ()
 		{

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsolePourSqlLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,17 @@ namespace App4
 		{
 			InitializeComponent();
 		}
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.DB_PATH1))
+            {
+                connection.CreateTable<Etudiant>();
+                var etudiants = connection.Table<Etudiant>().ToList();
+                etudiantIListView.ItemsSource = etudiants;
+            }
+        }
         public void EtudiantItem_Activeted(object sender, EventArgs e)
         {
             Navigation.PushAsync(new EtudiantPage());
