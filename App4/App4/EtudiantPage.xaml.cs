@@ -48,7 +48,7 @@ namespace App4
             }*/
             DisplayAlert("Great", etudiantOperation.ReadEtudiants().Count.ToString(), "OK");
             etudiantOperation.DeleteEtudiant(etudiantOperation.ReadEtudiants().Last());
-            //
+            
         }
 
     }
