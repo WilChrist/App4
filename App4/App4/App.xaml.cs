@@ -15,6 +15,7 @@ namespace App4
         public static string DB_PATH1 { get => DB_PATH; set => DB_PATH = value; }
         public static SQLiteConnection Connection { get => connection; set => connection = value; }
 
+
         public App ()
 		{
 			InitializeComponent();
@@ -27,7 +28,6 @@ namespace App4
             DB_PATH = DB_path;
             connection = new SQLite.SQLiteConnection(DB_PATH);
             connection.CreateTable<Etudiant>();
-                
             MainPage = new NavigationPage(new MainPage());
         }
 
