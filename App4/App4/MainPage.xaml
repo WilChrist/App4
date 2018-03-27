@@ -8,5 +8,14 @@
         <ToolbarItem Text="Etudiant" Activated="EtudiantItem_Activeted"/>
         <ToolbarItem Text="Filière" Activated="FiliereItem_Activeted"/>
     </ContentPage.ToolbarItems>
+    <ListView x:Name="etudiantIListView">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+
+                <TextCell Text="{Binding Nom}"
+                          Detail="{Binding Telephone}"/>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 
 </ContentPage>
