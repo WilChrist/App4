@@ -13,10 +13,12 @@ namespace App4
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EtudiantPage : ContentPage
 	{
+        EtudiantOperationImpl etudiantOperation;
 		public EtudiantPage ()
 		{
 			InitializeComponent ();
-		}
+            etudiantOperation = new EtudiantOperationImpl(App.Connection);
+        }
         public void Enregistrer_Clicked(object sender, EventArgs e)
         {
             //Etudiant etudiant = new Etudiant(1, "Nzesseu", "Willy", "Wad El-Basha", "0635348819", "myBeautifulFace.jpg", 'M', DateTime.Now);
@@ -29,20 +31,23 @@ namespace App4
 
 
 
-            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.DB_PATH1))
-            {
-                connection.CreateTable<Etudiant>();
-                var numberOfRows= connection.Insert(etudiant);
+            
+                var numberOfRows= etudiantOperation.CreateEtudiant(etudiant);
                 if (numberOfRows > 0)
                 {
-                    DisplayAlert("Success", "Etudiant correctement ajouté", "OK");
+                    DisplayAlert("Great", "Etudiant correctement ajouté !", "OK");
                 }
                 else
                 {
-                    DisplayAlert("Failure", "Etudiant non ajouté", "OK");
+                    DisplayAlert("Aïe Aïe Aïe", "Etudiant non ajouté !", "OK");
                 }
-            }
-
+            DisplayAlert("Great", etudiantOperation.ReadEtudiant(1).Prenom, "OK");
+            /*for(int i=0; i < etudiantOperation.ReadEtudiants().Count; i++)
+            {
+                DisplayAlert("Great", etudiantOperation.ReadEtudiant(i).Prenom, "OK");
+            }*/
+            DisplayAlert("Great", etudiantOperation.ReadEtudiants().Count.ToString(), "OK");
+            etudiantOperation.DeleteEtudiant(etudiantOperation.ReadEtudiants().Last());
             //
         }
 
