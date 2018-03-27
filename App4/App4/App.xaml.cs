@@ -18,13 +18,14 @@ namespace App4
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new MainPage());
+			MainPage = new LoginPage();
 		}
         public App(string DB_path)
         {
             InitializeComponent();
             DB_PATH = DB_path;
-            MainPage = new NavigationPage(new MainPage());
+             MainPage = new LoginPage();
+            
         }
 
 		protected override void OnStart ()
