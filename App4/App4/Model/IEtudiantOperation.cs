@@ -11,7 +11,7 @@ namespace ConsolePourSqlLite
         int CreateEtudiant(Etudiant etudiant);
         Etudiant ReadEtudiant(int cne);
         List<Etudiant> ReadEtudiants();
-        void UpdateEtudiant(Etudiant etudiant);
-        void DeleteEtudiant(Etudiant etudiant);
+        int UpdateEtudiant(Etudiant etudiant);
+        int DeleteEtudiant(Etudiant etudiant);
     }
 }
