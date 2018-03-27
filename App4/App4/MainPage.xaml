@@ -11,7 +11,8 @@
     <ListView x:Name="etudiantIListView">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextCell Text="{Binding Cne}"
+
+                <TextCell Text="{Binding Nom}"
                           Detail="{Binding Telephone}"/>
             </DataTemplate>
         </ListView.ItemTemplate>

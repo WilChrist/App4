@@ -30,7 +30,6 @@ namespace App4
             };
 
 
-
             
                 var numberOfRows= etudiantOperation.CreateEtudiant(etudiant);
                 if (numberOfRows > 0)
@@ -48,7 +47,7 @@ namespace App4
             }*/
             DisplayAlert("Great", etudiantOperation.ReadEtudiants().Count.ToString(), "OK");
             etudiantOperation.DeleteEtudiant(etudiantOperation.ReadEtudiants().Last());
-            
+
         }
 
     }
