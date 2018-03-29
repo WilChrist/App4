@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using App4.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,23 +15,32 @@ namespace App4
 		public LoginPage ()
 		{
 			InitializeComponent ();
-            //this.BackgroundImage = "C:\\Users\\FRANCIS YEMETIO\\Desktop\\App4\\App4\\App4.Android\\Resources\\drawable\\background_1.jpg";
+            
 		}
 
+        public LoginPage(String path)
+        {
+            InitializeComponent();
+            outil = new UserOperation(new SQLite.SQLiteConnection(path));
+        }
+
+        UserOperation outil;
+        
          void Handle_Clicked(object sender, System.EventArgs e)
         {
             String email = emailField.Text;
             String password = passwordField.Text;
 
-            if (email.Equals("fr") && password.Equals("fr"))
+            User s = null;
+             s = outil.FindUserByEmailAndPassword(email, password);
+            if (s==null)
             {
-                App.Current.MainPage = new NavigationPage(new MainPage());
+                DisplayAlert("ERREUR", "email ou mot de passe incorrecte", "ok");
             }
             else
             {
-                DisplayAlert("Erreur", "email ou mot de passe invalide", "ok");
+                App.Current.MainPage = new NavigationPage(new MainPage());
             }
-
 
 
         }
