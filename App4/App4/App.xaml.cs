@@ -20,15 +20,20 @@ namespace App4
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new MainPage());
+			MainPage = new LoginPage();
 		}
         public App(string DB_path)
         {
             InitializeComponent();
             DB_PATH = DB_path;
+<<<<<<< HEAD
             connection = new SQLite.SQLiteConnection(DB_PATH);
             connection.CreateTable<Etudiant>();
             MainPage = new NavigationPage(new MainPage());
+=======
+             MainPage = new LoginPage();
+            
+>>>>>>> FrancisKholoud
         }
 
 		protected override void OnStart ()
