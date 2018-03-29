@@ -5,11 +5,30 @@
     <ContentPage.Content>
         <StackLayout Margin="10,10,10,10">
 
-            <Entry Placeholder="Entrer Votre Id de Filière"/>
-            <DatePicker />
 
-            <Button Text="Enregistrer" 
-                    Clicked="Enregistrer_Clicked"/>
+            <ListView x:Name="filiereListView" Header="Liste des filières">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="Onupdate" CommandParameter="{Binding .}" Text="Update" />
+                                <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
+                            </ViewCell.ContextActions>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="Olive">
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text = "{Binding Id_fil}"/>
+                                    <Label Text = "{Binding Nom_filiere}"/>
+                                    <Label Text = "{Binding Responsbale}"/>
+                                    <Label Text = "{Binding Date_creation}"/>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Ajouter une filiere" Clicked="Add_Clicked"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
