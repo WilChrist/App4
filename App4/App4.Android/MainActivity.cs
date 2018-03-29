@@ -24,7 +24,9 @@ namespace App4.Droid
             string fullPath = Path.Combine(fileLocation, fileName);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            Zumero.DataGridComponent.Init();
             LoadApplication(new App(fullPath));
+            
         }
     }
 }

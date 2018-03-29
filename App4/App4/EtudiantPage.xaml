@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App4.EtudiantPage">
     <ContentPage.Content>
+        
         <StackLayout Margin="10,10,10,10">
             
             <Entry Placeholder="Entrer Votre Id de Filière"/>
@@ -17,5 +18,6 @@
             <Button Text="Enregistrer" 
                     Clicked="Enregistrer_Clicked"/>
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>

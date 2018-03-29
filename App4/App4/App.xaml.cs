@@ -29,6 +29,7 @@ namespace App4
             connection = new SQLite.SQLiteConnection(DB_PATH);
             connection.CreateTable<Etudiant>();
             MainPage = new NavigationPage(new MainPage());
+            
         }
 
 		protected override void OnStart ()
