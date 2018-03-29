@@ -27,9 +27,16 @@ namespace App4.Model
             return database.Table<Filiere>().ToList();
         }
 
-        public void UpdateFiliere(Filiere filiere)
+        
+        public int UpdateFiliere(Filiere filiere)
         {
-            database.Update(filiere);
+            Filiere f = (Filiere)database.Find<Filiere>(filiere.Id_fil);
+            int id = filiere.Id_fil;
+            f = filiere;
+            f.Id_fil = id;
+
+            return database.Update(f);
+               
         }
     }
 }

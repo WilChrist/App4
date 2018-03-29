@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout Margin="10,10,10,10">
             
-            <Entry Placeholder="Entrer Votre Id de Filière"/>
+            <Entry  Placeholder="Entrer Votre Id de Filière"/>
             <Entry  Placeholder="Entrer Votre Nom"/>
             <Entry Placeholder="Entrer Votre Prénom"/>
             <Entry Placeholder="Entrer Votre Adresse"/>
