@@ -1,4 +1,5 @@
-﻿using ConsolePourSqlLite;
+﻿using App4.Model;
+using ConsolePourSqlLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,24 +15,72 @@ namespace App4
 	public partial class EtudiantPage : ContentPage
 	{
         EtudiantOperationImpl etudiantOperation;
+        FiliereOperationImpl filiereOperation;
 		public EtudiantPage ()
 		{
 			InitializeComponent ();
             etudiantOperation = new EtudiantOperationImpl(App.Connection);
+            filiereOperation = new FiliereOperationImpl(App.Connection);
         }
         public void Enregistrer_Clicked(object sender, EventArgs e)
         {
-            //Etudiant etudiant = new Etudiant(1, "Nzesseu", "Willy", "Wad El-Basha", "0635348819", "myBeautifulFace.jpg", 'M', DateTime.Now);
-            Etudiant etudiant = new Etudiant()
+            List<Filiere> filieres = new List<Filiere>
             {
-                Cne =1,
-                Nom="Nzesseu",
-                Prenom="Willy"
+                new Filiere(){Nom_filiere = "génie informatique" },
+                new Filiere(){Nom_filiere = "génie industriel" },
+                new Filiere(){Nom_filiere = "génie procedes" },
+                new Filiere(){Nom_filiere = "génie telecome" }
             };
+            foreach (var item in filieres)
+            {
+                filiereOperation.CreateFiliere(item);
+            }
+
+            List<Etudiant> etudiants = new List<Etudiant>
+            {
+                new Etudiant()
+                {
+                    Cne = 1,
+                    Nom = "Nzesseu",
+                    Prenom = "Willy",
+                    Id_fil = 1
+                },
+                new Etudiant()
+                {
+                    Cne = 78,
+                    Nom = "Alaa",
+                    Prenom = "khouloud",
+                    Id_fil = 1
+                },
+                new Etudiant()
+                {
+                    Cne = 121,
+                    Nom = "herraz",
+                    Prenom = "Imane",
+                    Id_fil = 1
+                },
+                new Etudiant()
+                {
+                    Cne = 15,
+                    Nom = "Asmaa",
+                    Prenom = "bj",
+                    Id_fil = 2
+                },
+                new Etudiant()
+                {
+                    Cne = 154,
+                    Nom = "Ezzahraoui",
+                    Prenom = "meriem",
+                    Id_fil = 2
+                }
+            };
+            foreach (var item in etudiants)
+            {
+                etudiantOperation.CreateEtudiant(item);
+            }
 
 
-            
-                var numberOfRows= etudiantOperation.CreateEtudiant(etudiant);
+           /* var numberOfRows= etudiantOperation.CreateEtudiant(etudiant);
                 if (numberOfRows > 0)
                 {
                     DisplayAlert("Great", "Etudiant correctement ajouté !", "OK");
@@ -44,9 +93,9 @@ namespace App4
             /*for(int i=0; i < etudiantOperation.ReadEtudiants().Count; i++)
             {
                 DisplayAlert("Great", etudiantOperation.ReadEtudiant(i).Prenom, "OK");
-            }*/
+            }
             DisplayAlert("Great", etudiantOperation.ReadEtudiants().Count.ToString(), "OK");
-            etudiantOperation.DeleteEtudiant(etudiantOperation.ReadEtudiants().Last());
+            etudiantOperation.DeleteEtudiant(etudiantOperation.ReadEtudiants().Last());*/
 
         }
 

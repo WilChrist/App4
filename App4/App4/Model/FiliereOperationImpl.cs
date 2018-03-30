@@ -8,6 +8,7 @@ namespace App4.Model
     class FiliereOperationImpl : IFiliereOperation
     {
         SQLite.SQLiteConnection database;
+       
         public FiliereOperationImpl(SQLite.SQLiteConnection database)
         {
             this.database = database;
