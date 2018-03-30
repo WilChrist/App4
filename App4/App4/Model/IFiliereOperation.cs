@@ -8,7 +8,7 @@ namespace App4.Model
     {
         int CreateFiliere(Filiere filiere);
         List<Filiere> ReadFilieres();
-        int UpdateFiliere(Filiere filiere);
+        void UpdateFiliere(Filiere filiere);
         void DeleteFiliere(Filiere filiere);
     }
 }

@@ -1,5 +1,4 @@
-﻿using App4.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -15,22 +14,13 @@ namespace App4
 	public partial class FilierePage : ContentPage
 	{
         ObservableCollection<Model.Filiere> list;
-        FiliereOperationImpl filireOpration;
-        
-        public FilierePage ()
+		public FilierePage ()
 		{
 			InitializeComponent ();
-            filireOpration = new FiliereOperationImpl(App.Connection);
-        }
-        protected override void OnAppearing()
+		}
+        public void Onupdate(object sender, EventArgs e)
         {
-            base.OnAppearing();
-            list = new ObservableCollection<Model.Filiere>(filireOpration.ReadFilieres());
-            filiereListView.ItemsSource = list;
-        }
-            public void Onupdate(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new ModifierFiliere());
+            
         }
 
         public void OnDelete(object sender, EventArgs e)

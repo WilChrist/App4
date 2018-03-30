@@ -8,10 +8,10 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
 
-            <Entry x:Name="id" Placeholder="ID filiere"/>
-            <Entry x:Name="nom" Placeholder="Nom Filiere"/>
-            <Entry x:Name="resp" Placeholder="Responsable"/>
-            <DatePicker x:Name="date" />
+            <Entry Placeholder="ID filiere"/>
+            <Entry  Placeholder="Nom Filiere"/>
+            <Entry Placeholder="Responsable"/>
+            <DatePicker />
 
             <Button Text="enregistrer les modifications" 
                     Clicked="Enregistrer_Clicked"/>
