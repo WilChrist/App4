@@ -22,6 +22,7 @@ namespace App4
         {
             InitializeComponent();
             outil = new UserOperation(new SQLite.SQLiteConnection(path));
+           
         }
 
         UserOperation outil;

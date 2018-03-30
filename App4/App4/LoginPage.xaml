@@ -1,47 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App4.LoginPage">
+             xmlns:local="clr-namespace:App4;assembly=App4"
+             x:Class="App4.LoginPage"
+             BackgroundImage="background_1.jpg"
+             >
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="primary">#424ef0</Color>
+            <Color x:Key="primary">#ffffff</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Spacing="10" >
-
-                <Label HeightRequest="110"  
+        <StackLayout Spacing="10">
+          <!--  <Image Source="{local:ImageResource App4.bg.png}" /> 
+             BackgroundColor="{StaticResource primary}" 
+            -->
+            <Label HeightRequest="110"  
                           HorizontalOptions="FillAndExpand" 
                           Text="ENSAWARE" 
-                          BackgroundColor="{StaticResource primary}"
+                        
                           TextColor="White" 
                           FontSize="20" 
                           HorizontalTextAlignment="Center"
                           VerticalTextAlignment="Center"/>
 
-                <Entry  Margin="20,20,20,0" 
+            <Entry  Margin="20,20,20,0" 
                          HeightRequest="50" 
                          Placeholder="Email"
                          Keyboard="Email"
+                         TextColor="White"
+                         PlaceholderColor="White"
+                         BackgroundColor="Transparent"
                          x:Name="emailField"
                          >
-                </Entry>
+            </Entry>
 
-                <Entry Margin="20,0,20,0" 
+            <Entry Margin="20,0,20,0" 
                         HeightRequest="50" IsPassword="true"
+                        TextColor="White"
+                        PlaceholderColor="White"
+                        BackgroundColor="Transparent"
                         Placeholder="Password"
                         x:Name="passwordField">
-                </Entry>
+            </Entry>
 
-                <Button Margin="20,0,20,0" 
+            <Button Margin="20,0,20,0" 
                          HeightRequest="50" 
-                         TextColor="White" 
+                         TextColor="SkyBlue" 
                          Text="Login" 
-                         Clicked="Handle_Clicked"
                          BackgroundColor="{StaticResource primary}"
+                         Clicked="Handle_Clicked"
                          HorizontalOptions="FillAndExpand"/>
-            </StackLayout>
+        </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
