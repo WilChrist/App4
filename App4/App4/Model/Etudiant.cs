@@ -15,7 +15,7 @@ namespace ConsolePourSqlLite
         string prenom;
         string adresse;
         string telephone;
-        string image;
+        int image;
         string sexe;
         DateTime date_naissance;
 
@@ -28,7 +28,7 @@ namespace ConsolePourSqlLite
         public string Prenom { get => prenom; set => prenom = value; }
         public string Adresse { get => adresse; set => adresse = value; }
         public string Telephone { get => telephone; set => telephone = value; }
-        public string Image { get => image; set => image = value; }
+        public int Image { get => image; set => image = value; }
         public DateTime Date_naissance { get => date_naissance.Date; set => date_naissance = value; }
         public string Sexe { get => sexe; set => sexe = value; }
     }

@@ -28,6 +28,7 @@ namespace App4
             DB_PATH = DB_path;
             connection = new SQLite.SQLiteConnection(DB_PATH);
             connection.CreateTable<Etudiant>();
+            connection.CreateTable<App4.Model.Image>();
             MainPage = new NavigationPage(new MainPage());
             
         }

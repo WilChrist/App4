@@ -9,14 +9,15 @@
                 <z:Column>
                     <z:Column.Template>
                         <DataTemplate>
-                            <label Text="{Binding name}"/>
+                            <Label Text="{Binding name}"/>
+                            
                         </DataTemplate>
                     </z:Column.Template>
                 </z:Column>
                 <z:Column>
                     <z:Column.Template>
                         <DataTemplate>
-                            <label Text="{Binding prenom}"/>
+                            <Label Text="{Binding prenom}"/>
                         </DataTemplate>
                     </z:Column.Template>
                 </z:Column>
