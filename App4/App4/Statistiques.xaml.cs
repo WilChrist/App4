@@ -48,16 +48,27 @@ namespace App4
             };*/
         List<Microcharts.Entry> entries = new List<Entry>();
         EtudiantOperationImpl op;
-        FiliereOperationImpl fil;
+
         public Statistiques()
         {
             InitializeComponent();
-            op = new EtudiantOperationImpl(App.Connection);
-            fil = new FiliereOperationImpl(App.Connection);
+          /*  op = new EtudiantOperationImpl(App.Connection);
 
-           
+            var etudiant = op.ReadEtudiants();
+
+            foreach (var item in etudiant)
+            {
+                entries.Add(
+                    new Entry((int)op.CountStudentPerFiliere("noun"))
+                    {
+                        Label = "item.Nom",
+                        ValueLabel = op.CountStudentPerFiliere("noun").ToString(),
+                        Color = SKColor.Parse("#3498db")
+                    });
+            }
+
             if (entries != null)
-                chart.Chart = new BarChart { Entries = entries };
+                chart.Chart = new BarChart { Entries = entries };*/
         }
     }
 }
