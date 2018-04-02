@@ -7,12 +7,10 @@
   <ItemGroup>
     <None Remove="background_1.jpg" />
     <None Remove="background_2.jpg" />
-    <None Remove="bg.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="background_1.jpg" />
-    <EmbeddedResource Include="bg.png" />
   </ItemGroup>
 
   <ItemGroup>

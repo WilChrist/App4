@@ -3,56 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:App4;assembly=App4"
              x:Class="App4.LoginPage"
-             BackgroundImage="background_1.jpg"
+             BackgroundImage="bg.jpg"
              >
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Color x:Key="primary">#ffffff</Color>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+    
     <ContentPage.Content>
-        <ScrollView>
-        <StackLayout Spacing="10">
-          <!--  <Image Source="{local:ImageResource App4.bg.png}" /> 
-             BackgroundColor="{StaticResource primary}" 
-            -->
-            <Label HeightRequest="110"  
-                          HorizontalOptions="FillAndExpand" 
-                          Text="ENSAWARE" 
-                        
-                          TextColor="White" 
-                          FontSize="20" 
-                          HorizontalTextAlignment="Center"
-                          VerticalTextAlignment="Center"/>
 
-            <Entry  Margin="20,20,20,0" 
-                         HeightRequest="50" 
-                         Placeholder="Email"
-                         Keyboard="Email"
-                         TextColor="White"
-                         PlaceholderColor="White"
-                         BackgroundColor="Transparent"
-                         x:Name="emailField"
-                         >
-            </Entry>
+        <StackLayout>
+            <!-- grid pour le logo -->
+            <Grid>
+                <Image Source="clogo.png" WidthRequest="110" HeightRequest="110" Margin="20" />
+            </Grid>
+            
+            <!-- grid pour l'email -->
+            <Grid Margin="20,20,20,0">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height = "Auto"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width = "Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Image Source="Message2.png" Grid.Row="0" Grid.Column="0" />
+                <Entry x:Name="emailField" Grid.Row="0" Grid.Column="1" Placeholder="email" PlaceholderColor="White" TextColor="White" Keyboard="Email" />
+            </Grid>
 
-            <Entry Margin="20,0,20,0" 
-                        HeightRequest="50" IsPassword="true"
-                        TextColor="White"
-                        PlaceholderColor="White"
-                        BackgroundColor="Transparent"
-                        Placeholder="Password"
-                        x:Name="passwordField">
-            </Entry>
+            <!-- grid pour le password -->
+            <Grid Margin="20,20,20,0">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height = "Auto"/>
+                </Grid.RowDefinitions>
 
-            <Button Margin="20,0,20,0" 
-                         HeightRequest="50" 
-                         TextColor="SkyBlue" 
-                         Text="Login" 
-                         BackgroundColor="{StaticResource primary}"
-                         Clicked="Handle_Clicked"
-                         HorizontalOptions="FillAndExpand"/>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width = "Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="Password.png" Grid.Row="0" Grid.Column="0" />
+                <Entry x:Name="passwordField" Grid.Row="0" Grid.Column="1" Placeholder="password" PlaceholderColor="White" TextColor="White" IsPassword="True"/>
+            </Grid>
+
+            <!-- grid pour le bouton -->
+            <Grid Margin="20,20,20,0">
+                <Button Text="LogIn" BackgroundColor="White" TextColor="#3897f0" HeightRequest="50" Clicked="Handle_Clicked" />
+            </Grid>
         </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

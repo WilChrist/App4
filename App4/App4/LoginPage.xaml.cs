@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 using App4.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.ComponentModel.Design;
+using System.Text.RegularExpressions;
 
 namespace App4
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LoginPage : ContentPage
-	{
-		public LoginPage ()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class LoginPage : ContentPage
+    {
+        UserOperation outil;
+  
+
+        public LoginPage ()
 		{
 			InitializeComponent ();
             
@@ -22,28 +27,49 @@ namespace App4
         {
             InitializeComponent();
             outil = new UserOperation(new SQLite.SQLiteConnection(path));
-           
+
+            //emailField.SetBinding(Entry.TextProperty, email.Value,BindingMode.TwoWay);
         }
 
-        UserOperation outil;
-        
-         void Handle_Clicked(object sender, System.EventArgs e)
+
+
+        void Handle_Clicked(object sender, System.EventArgs e)
         {
-            String email = emailField.Text;
-            String password = passwordField.Text;
+            String email = "", password ="";
+             email = emailField.Text;
+             password = passwordField.Text;
 
-            User s = null;
-             s = outil.FindUserByEmailAndPassword(email, password);
-            if (s==null)
-            {
-                DisplayAlert("ERREUR", "email ou mot de passe incorrecte", "ok");
-            }
-            else
-            {
-                App.Current.MainPage = new NavigationPage(new MainPage());
-            }
+            
+
+             if(email!=null && password!=null)
+             {
+                if (Regex.IsMatch(email, "^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$"))
+                {
+                    User s = null;
+                    s = outil.FindUserByEmailAndPassword(email, password);
+                    if (s == null)
+                    {
+                        DisplayAlert("ERREUR", "cet utilisateur n'existe pas", "ok");
+                    }
+                    else
+                    {
+                        App.Current.MainPage = new NavigationPage(new MainPage());
+                    }
+                }
+                else
+                {
+                    DisplayAlert("ERREUR", "veuillez saisir un email correcte", "ok");
+                }
+                 
+             }
+             else
+             {
+                 DisplayAlert("ERREUR", "veuillez saisir l'email et le mot de passe", "ok");
+             }
+             
+        }
+        
 
 
         }
-    }
 }
