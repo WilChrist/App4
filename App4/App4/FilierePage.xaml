@@ -6,7 +6,7 @@
         <StackLayout Margin="10,10,10,10">
 
 
-            <ListView x:Name="filiereListView" Header="Liste des filières">
+            <ListView x:Name="filiereListView" SeparatorColor="Blue" CachingStrategy="RecycleElement" Header="Liste des filières">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -14,12 +14,16 @@
                                 <MenuItem Clicked="Onupdate" CommandParameter="{Binding .}" Text="Update" />
                                 <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
                             </ViewCell.ContextActions>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="Olive">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
                                 <StackLayout Orientation="Vertical">
-                                    <Label Text = "{Binding Id_fil}"/>
-                                    <Label Text = "{Binding Nom_filiere}"/>
-                                    <Label Text = "{Binding Responsbale}"/>
-                                    <Label Text = "{Binding Date_creation}"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text = "{Binding Id_fil}"/>
+                                        <Label Text = "{Binding Nom_filiere}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text = "{Binding Responsbale}"/>
+                                        <Label Text = "{Binding Date_creation, StringFormat='{0:MMMM dd, yyyy}'}" />
+                                    </StackLayout>
                                 </StackLayout>
 
                             </StackLayout>

@@ -30,12 +30,32 @@ namespace App4
         }
             public void Onupdate(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ModifierFiliere());
+            var menuitem = sender as MenuItem;
+            var filiere = menuitem.BindingContext as Filiere;
+            if (menuitem != null)
+            {
+                Navigation.PushAsync(new ModifierFiliere(filiere));
+            }
         }
 
-        public void OnDelete(object sender, EventArgs e)
+        public async void OnDelete(object sender, EventArgs e)
         {
-
+            var menuitem = sender as MenuItem;
+            if (menuitem != null)
+            {
+                var filiere = menuitem.BindingContext as Filiere;
+                var answer = await DisplayAlert("Question?", "Voulez-vous Vraiment supprimer la filiere " + filiere.Nom_filiere, "Yes", "No");
+                if (answer)
+                {
+                    filireOpration.DeleteFiliere(filiere);
+                    list.Remove(filiere);
+                    DisplayAlert("Success", filiere.Nom_filiere +" a été supprimée avec succe", "Ok");
+                }
+                else
+                {
+                    return;
+                }
+            }
         }
         
          public void Add_Clicked(object sender, EventArgs e)

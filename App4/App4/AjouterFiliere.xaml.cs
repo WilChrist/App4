@@ -23,8 +23,6 @@ namespace App4
         }
         public void Enregistrer_Clicked(object sender, EventArgs e)
         {
-            
-            f1.Id_fil = Convert.ToInt32(id.Text);
             f1.Nom_filiere = nom.Text;
             f1.Responsbale = resp.Text;
             f1.Date_creation = date.Date;

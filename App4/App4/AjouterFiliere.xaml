@@ -4,12 +4,11 @@
              x:Class="App4.AjouterFiliere">
     <ContentPage.Content>
         <StackLayout>
-            <Entry x:Name="id" Placeholder="ID filiere"/>
             <Entry x:Name="nom" Placeholder="Nom Filiere"/>
             <Entry x:Name="resp" Placeholder="Responsable"/>
             <DatePicker x:Name="date" />
 
-            <Button Text="Enregistrer" 
+            <Button Text="Ajouter" 
                     Clicked="Enregistrer_Clicked"/>
         </StackLayout>
     </ContentPage.Content>

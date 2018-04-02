@@ -18,15 +18,27 @@ namespace App4
         Filiere f1;
         public ModifierFiliere ()
 		{
-			InitializeComponent ();
+            InitializeComponent();
             filireOpration = new FiliereOperationImpl(App.Connection);
-            f1 = new Filiere();
+          
+        }
+
+
+        public ModifierFiliere(Filiere f)
+        {
+            InitializeComponent();
+            filireOpration = new FiliereOperationImpl(App.Connection);
+            f1 = f;
+            id.Text = f.Id_fil.ToString();
+            nom.Text = f.Nom_filiere;
+            resp.Text = f.Responsbale;
+            date.Date=f.Date_creation;
+
         }
 
         //Enregistrer_Clicked
         public void Enregistrer_Clicked(object sender, EventArgs e)
         {
-            f1.Id_fil = Convert.ToInt32(id.Text);
             f1.Nom_filiere = nom.Text;
             f1.Responsbale = resp.Text;
             f1.Date_creation = date.Date;
