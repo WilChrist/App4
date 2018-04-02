@@ -1,4 +1,5 @@
-﻿using ConsolePourSqlLite;
+﻿using App4.Model;
+using ConsolePourSqlLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,13 @@ namespace App4
             }*/
             DisplayAlert("Great", etudiantOperation.ReadEtudiants().Count.ToString(), "OK");
             etudiantOperation.DeleteEtudiant(etudiantOperation.ReadEtudiants().Last());
+            
+            ImageOperationImpl imageOperation = new ImageOperationImpl(App.Connection);
+            imageOperation.CreateImageFromPath("icon.png", "Image1");
+            App4.Model.Image image = imageOperation.ReadImages().Last();
+
+            etudiantOperation.ReadEtudiants().Last().Image = image.Id;
+            DisplayAlert("Image",image.FileName, "Yes");
 
         }
 

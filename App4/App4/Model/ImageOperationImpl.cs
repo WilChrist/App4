@@ -53,7 +53,7 @@ namespace App4.Model
             image.FileName = name;
             try
             {
-                image.Content = File.ReadAllBytes("woman.jpg");
+                image.Content = File.ReadAllBytes(path);
             }
             catch (Exception ex)
             {
