@@ -63,6 +63,20 @@ namespace App4
             Navigation.PushAsync(new AjouterFiliere());
         }
 
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {  
+
+            if (string.IsNullOrEmpty(e.NewTextValue))
+            {
+                filiereListView.ItemsSource = list;
+            }
+
+            else
+            {
+                filiereListView.ItemsSource = list.Where(x => x.Nom_filiere.StartsWith(e.NewTextValue));
+            }
+        }
+
 
 
     }

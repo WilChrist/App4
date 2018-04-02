@@ -30,6 +30,9 @@ namespace App4
             if (nbr > 0)
             {
                 DisplayAlert("Great", "filiere correctement ajouté !", "OK");
+                f1.Nom_filiere = "";
+                f1.Responsbale = "";
+                f1.Date_creation = date.Date;
             }
             else
             {

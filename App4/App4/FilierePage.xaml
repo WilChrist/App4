@@ -3,10 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App4.FilierePage">
     <ContentPage.Content>
-        <StackLayout Margin="10,10,10,10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-
-            <ListView x:Name="filiereListView" SeparatorColor="Blue" CachingStrategy="RecycleElement" Header="Liste des filières">
+            <BoxView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Blue"/>
+            <SearchBar Grid.Row="0" TextChanged="SearchBar_TextChanged" Placeholder="Search" VerticalOptions="Center"></SearchBar>
+            <ListView  Grid.Row="1" x:Name="filiereListView" SeparatorColor="Blue" CachingStrategy="RecycleElement">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -31,8 +37,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Ajouter une filiere" Clicked="Add_Clicked"/>
-
-        </StackLayout>
+            <Button Grid.Row="2" Text="Ajouter une Filière" Clicked="Add_Clicked" FontSize="12" BorderRadius = "5" BorderWidth = "2"/>
+        </Grid>
+       
     </ContentPage.Content>
 </ContentPage>
