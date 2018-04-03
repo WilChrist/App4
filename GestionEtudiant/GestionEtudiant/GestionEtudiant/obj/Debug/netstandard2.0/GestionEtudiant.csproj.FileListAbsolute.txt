@@ -9,7 +9,6 @@ C:\Users\asmaa\source\repos\GestionEtudiant\GestionEtudiant\GestionEtudiant\obj\
 C:\Users\asmaa\Desktop\New folder (2)\App4\GestionEtudiant\GestionEtudiant\GestionEtudiant\bin\Debug\netstandard2.0\GestionEtudiant.deps.json
 C:\Users\asmaa\Desktop\New folder (2)\App4\GestionEtudiant\GestionEtudiant\GestionEtudiant\bin\Debug\netstandard2.0\GestionEtudiant.dll
 C:\Users\asmaa\Desktop\New folder (2)\App4\GestionEtudiant\GestionEtudiant\GestionEtudiant\bin\Debug\netstandard2.0\GestionEtudiant.pdb
-C:\Users\asmaa\Desktop\New folder (2)\App4\GestionEtudiant\GestionEtudiant\GestionEtudiant\obj\Debug\netstandard2.0\GestionEtudiant.csprojResolveAssemblyReference.cache
 C:\Users\asmaa\Desktop\New folder (2)\App4\GestionEtudiant\GestionEtudiant\GestionEtudiant\obj\Debug\netstandard2.0\GestionEtudiant.csproj.CoreCompileInputs.cache
 C:\Users\asmaa\Desktop\New folder (2)\App4\GestionEtudiant\GestionEtudiant\GestionEtudiant\obj\Debug\netstandard2.0\GestionEtudiant.AjoutEtudiant.xaml.g.cs
 C:\Users\asmaa\Desktop\New folder (2)\App4\GestionEtudiant\GestionEtudiant\GestionEtudiant\obj\Debug\netstandard2.0\GestionEtudiant.App.xaml.g.cs

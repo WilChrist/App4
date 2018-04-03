@@ -4,7 +4,7 @@
              x:Class="GestionEtudiant.EtudiantProfil">
     <ContentPage.Content>
         <StackLayout>
-          
+                      
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

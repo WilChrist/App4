@@ -78,11 +78,13 @@ namespace GestionEtudiant
                         return;
                     stream = file.GetStream();
                     file.Dispose();
-                    
+                    image.Source = ImageSource.FromStream(() => stream);
                 }
                 catch //(Exception ex)
                 {
-                    
+                    // Xamarin.Insights.Report(ex);
+                    // await DisplayAlert("Uh oh", "Something went wrong, but don't worry we captured
+                    await DisplayAlert("Photo Non enregistrée", ":( error.", "OK");
                 }
             };
         }

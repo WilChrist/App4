@@ -11,8 +11,8 @@
 namespace GestionEtudiant {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\asmaa\\source\\repos\\GestionEtudiant\\GestionEtudiant\\GestionEtudiant\\Etudi" +
-        "antProfil.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\asmaa\\Desktop\\New folder (2)\\App4\\GestionEtudiant\\GestionEtudiant\\Gestio" +
+        "nEtudiant\\EtudiantProfil.xaml")]
     public partial class EtudiantProfil : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]
