@@ -17,72 +17,54 @@ namespace App4
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Statistiques : ContentPage
     {
-        /*List<Entry> entries = new List<Entry>
+        public List<Entry> entries;
+        public Statistiques()
+        {
+            InitializeComponent();
+            entries= new List<Entry>();
+            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.DB_PATH1))
             {
+                var etudiants = connection.Table<Etudiant>().OrderBy(o => o.Id_fil).ToList();
 
-               new Entry(212)
-                 {
-                     Label = "UWP",
-                     ValueLabel = "212",
-                     Color = SKColor.Parse("#2c3e50")
-                 },
-                 new Entry(248)
-                 {
-                     Label = "Android",
-                     ValueLabel = "248",
-                     Color = SKColor.Parse("#77d065")
-                 },
-                 new Entry(128)
-                 {
-                     Label = "iOS",
-                     ValueLabel = "128",
-                     Color = SKColor.Parse("#b455b6")
-                 },
-                 new Entry(514)
-                 {
-                     Label = "Shared",
-                     ValueLabel = "514",
-                     Color = SKColor.Parse("#3498db")
-                 }
+                DisplayAlert("Great", etudiants.Count.ToString(), "OK");
 
-            };*/
-        List<Microcharts.Entry> entries = new List<Entry>();
-        EtudiantOperationImpl op;
+                int idf = etudiants.First<Etudiant>().Id_fil;
+                int cpt = 1;
+                for (int i = 0; i < etudiants.Count; i++)
+                {
+                    if (etudiants.ElementAt<Etudiant>(i).Id_fil == idf) cpt++;
+                    else
+                    {
+                        entries.Add(
+                          new Entry(cpt)
+                          {
+                              Label = idf.ToString(),
+                              ValueLabel = cpt.ToString(),
+                              Color = SKColor.Parse("#2c3e50")
+                          });
+                        idf = etudiants.ElementAt<Etudiant>(i).Id_fil;
+                        cpt = 1;
+                    }
 
-        public void EtudiantItem_Activeted(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new EtudiantPage());
+                }
+
+                chart.Chart = new BarChart { Entries = entries };
+            }
+           
         }
-        public void FiliereItem_Activeted(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new FilierePage());
-        }
-
-        public void StatistiqeItem_Activeted(object sender, EventArgs e)
+        public void BarsItem_Activeted(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Statistiques());
         }
 
-        public Statistiques()
+        public void DonutsItem_Activeted(object sender, EventArgs e)
         {
-            InitializeComponent();
-          /*  op = new EtudiantOperationImpl(App.Connection);
-
-            var etudiant = op.ReadEtudiants();
-
-            foreach (var item in etudiant)
-            {
-                entries.Add(
-                    new Entry((int)op.CountStudentPerFiliere("noun"))
-                    {
-                        Label = "item.Nom",
-                        ValueLabel = op.CountStudentPerFiliere("noun").ToString(),
-                        Color = SKColor.Parse("#3498db")
-                    });
-            }
-
-            if (entries != null)
-                chart.Chart = new BarChart { Entries = entries };*/
+            Navigation.PushAsync(new Donust(entries));
         }
+        public void CourbeItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Courbe(entries));
+        }
+
     }
 }
