@@ -1,6 +1,7 @@
 ﻿using ConsolePourSqlLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,41 +15,81 @@ namespace App4
 	public partial class EtudiantPage : ContentPage
 	{
         EtudiantOperationImpl etudiantOperation;
-		public EtudiantPage ()
+        List<string> listFiliere = new List<string>();
+        ObservableCollection<Etudiant> listEtudiantModel;
+
+        public EtudiantPage ()
 		{
 			InitializeComponent ();
             etudiantOperation = new EtudiantOperationImpl(App.Connection);
+            listEtudiantModel = new ObservableCollection<Etudiant>(etudiantOperation.ReadEtudiants());
+            listFiliere.Add("All");
+            listFiliere.Add("Info");
+            listFiliere.Add("GTR");
+            listFiliere.Add("Indus");
+            picker.ItemsSource = listFiliere;
+            Etudiant test = new Etudiant();
+            test.Nom = "Douiab";
+            test.Prenom = "Asmaa";
+            test.Cne = 15124524;
+            test.Image = "icon.png";
+            test.Adresse = "Jnane Clonne 2 Safi";
+            test.Date_naissance = Convert.ToDateTime("1/2/1996/");
+            test.Sexe = "Femme";
+            test.Telephone = "+21265058090";
+            listEtudiantModel.Add(test);
+            ListEtudiants.ItemsSource = listEtudiantModel;
+            BindingContext = listEtudiantModel;
         }
-        public void Enregistrer_Clicked(object sender, EventArgs e)
+        public void FiliereChange(object sender, EventArgs e)
         {
-            //Etudiant etudiant = new Etudiant(1, "Nzesseu", "Willy", "Wad El-Basha", "0635348819", "myBeautifulFace.jpg", 'M', DateTime.Now);
-            Etudiant etudiant = new Etudiant()
+            var filiereSelected = picker.SelectedItem as string;
+            FiliereSelectionnée.Text = filiereSelected;
+        }
+
+        public void AjouterEtudiant(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AjoutEtudiant());
+            //new AjoutEtudiant();
+        }
+        public void OnUpdate(object sender, EventArgs e)
+        {
+            var menuitem = sender as MenuItem;
+            if (menuitem != null)
             {
-                Cne =1,
-                Nom="Nzesseu",
-                Prenom="Willy"
-            };
+                var etudiant = menuitem.BindingContext as Etudiant;
+                Navigation.PushAsync(new AjoutEtudiant(etudiant));
+            }
+        }
 
-
-            
-                var numberOfRows= etudiantOperation.CreateEtudiant(etudiant);
-                if (numberOfRows > 0)
+        public async void OnDelete(object sender, EventArgs e)
+        {
+            var menuitem = sender as MenuItem;
+            if (menuitem != null)
+            {
+                var etudiant = menuitem.BindingContext as Etudiant;
+                var answer = await DisplayAlert("Question?", "Voulez-vous vraiment supprimer l'etuidiant " + etudiant.Nom, "Yes", "No");
+                if (answer)
                 {
-                    DisplayAlert("Great", "Etudiant correctement ajouté !", "OK");
+                    listEtudiantModel.Remove(etudiant);
+                    await DisplayAlert("Success", etudiant.Nom + " a été supprimée", "Ok");
                 }
                 else
                 {
-                    DisplayAlert("Aïe Aïe Aïe", "Etudiant non ajouté !", "OK");
+                    return;
                 }
-            DisplayAlert("Great", etudiantOperation.ReadEtudiant(1).Prenom, "OK");
-            /*for(int i=0; i < etudiantOperation.ReadEtudiants().Count; i++)
-            {
-                DisplayAlert("Great", etudiantOperation.ReadEtudiant(i).Prenom, "OK");
-            }*/
-            DisplayAlert("Great", etudiantOperation.ReadEtudiants().Count.ToString(), "OK");
-            etudiantOperation.DeleteEtudiant(etudiantOperation.ReadEtudiants().Last());
-
+            }
         }
+        public void More(object sender, EventArgs e)
+        {
+            var menuitem = sender as MenuItem;
+            if (menuitem != null)
+            {
+                var etudiant = menuitem.BindingContext as Etudiant;
+                Navigation.PushAsync(new EtudiantProfil(etudiant));
+            }
+        }
+        
 
     }
 }
