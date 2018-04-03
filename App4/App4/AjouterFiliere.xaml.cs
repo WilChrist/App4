@@ -30,14 +30,27 @@ namespace App4
             if (nbr > 0)
             {
                 DisplayAlert("Great", "filiere correctement ajouté !", "OK");
-                f1.Nom_filiere = "";
-                f1.Responsbale = "";
-                f1.Date_creation = date.Date;
+                nom.Text = "";
+                resp.Text = "";
+                date.Date = date.Date;
             }
             else
             {
                 DisplayAlert("Aïe Aïe Aïe", "filiere non ajouté !", "OK");
             }
+        }
+        public void EtudiantItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new EtudiantPage());
+        }
+        public void FiliereItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new FilierePage());
+        }
+
+        public void StatistiqeItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Statistiques());
         }
     }
 }

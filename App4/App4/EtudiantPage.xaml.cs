@@ -22,6 +22,21 @@ namespace App4
             etudiantOperation = new EtudiantOperationImpl(App.Connection);
             filiereOperation = new FiliereOperationImpl(App.Connection);
         }
+
+        public void EtudiantItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new EtudiantPage());
+        }
+        public void FiliereItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new FilierePage());
+        }
+
+        public void StatistiqeItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Statistiques());
+        }
+
         public void Enregistrer_Clicked(object sender, EventArgs e)
         {
             List<Filiere> filieres = new List<Filiere>

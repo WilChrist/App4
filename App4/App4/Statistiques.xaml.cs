@@ -49,6 +49,20 @@ namespace App4
         List<Microcharts.Entry> entries = new List<Entry>();
         EtudiantOperationImpl op;
 
+        public void EtudiantItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new EtudiantPage());
+        }
+        public void FiliereItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new FilierePage());
+        }
+
+        public void StatistiqeItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Statistiques());
+        }
+
         public Statistiques()
         {
             InitializeComponent();

@@ -2,7 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App4.FilierePage">
-    <ContentPage.Content>
+    
+        <ContentPage.ToolbarItems>
+            <ToolbarItem Text="Gestion des Filières" Order="Primary"/>
+            <ToolbarItem Text="Etudiant" Activated="EtudiantItem_Activeted" Order="Secondary"/>
+            <ToolbarItem Text="Filière" Activated="FiliereItem_Activeted" Order="Secondary"/>
+            <ToolbarItem Text="Statistique" Activated="StatistiqeItem_Activeted" Order="Secondary"/>
+        </ContentPage.ToolbarItems>
+        <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -10,9 +17,9 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <BoxView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Blue"/>
+            <BoxView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="#2196F3"/>
             <SearchBar Grid.Row="0" TextChanged="SearchBar_TextChanged" Placeholder="Search" VerticalOptions="Center"></SearchBar>
-            <ListView  Grid.Row="1" x:Name="filiereListView" SeparatorColor="Blue" CachingStrategy="RecycleElement">
+            <ListView  Grid.Row="1" x:Name="filiereListView" SeparatorVisibility="None" HasUnevenRows="True" ItemSelected="onSelect">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -20,24 +27,28 @@
                                 <MenuItem Clicked="Onupdate" CommandParameter="{Binding .}" Text="Update" />
                                 <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
                             </ViewCell.ContextActions>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="White">
-                                <StackLayout Orientation="Vertical">
+                            <Frame Padding="2" Margin="0,5,0,3" IsClippedToBounds="True" OutlineColor="#2196F3"  HasShadow="True" BackgroundColor="White">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text = "{Binding Id_fil}"/>
-                                        <Label Text = "{Binding Nom_filiere}"/>
+                                        <BoxView Color="Blue" WidthRequest="5" />
+                                        <Label Text = "{Binding Id_fil}" TextColor="Blue" HorizontalTextAlignment="Start"/>
+                                        <Label Text = "{Binding Nom_filiere}" TextColor="Black" HorizontalTextAlignment="Center"/>
                                     </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text = "{Binding Responsbale}"/>
-                                        <Label Text = "{Binding Date_creation, StringFormat='{0:MMMM dd, yyyy}'}" />
-                                    </StackLayout>
-                                </StackLayout>
 
-                            </StackLayout>
+                                </StackLayout>
+                               
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Grid.Row="2" Text="Ajouter une Filière" Clicked="Add_Clicked" FontSize="12" BorderRadius = "5" BorderWidth = "2"/>
+            <Image Grid.Row="2" Source="add.png" HeightRequest="40" WidthRequest="40" HorizontalOptions="EndAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Add_Clicked"  />
+                </Image.GestureRecognizers>
+            </Image>
+        <!--<Button Grid.Row="2" Text="+" FontSize="20" FontAttributes="Bold"  BackgroundColor="#2196F3" Clicked="Add_Clicked" WidthRequest="35" HeightRequest="40" BorderRadius="20" HorizontalOptions="EndAndExpand"/>
+       -->
         </Grid>
        
     </ContentPage.Content>

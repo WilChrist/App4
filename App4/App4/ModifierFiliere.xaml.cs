@@ -20,9 +20,7 @@ namespace App4
 		{
             InitializeComponent();
             filireOpration = new FiliereOperationImpl(App.Connection);
-          
         }
-
 
         public ModifierFiliere(Filiere f)
         {
@@ -33,6 +31,7 @@ namespace App4
             nom.Text = f.Nom_filiere;
             resp.Text = f.Responsbale;
             date.Date=f.Date_creation;
+
 
         }
 
@@ -46,11 +45,26 @@ namespace App4
             if (nbr > 0)
             {
                 DisplayAlert("Great", "filiere correctement modifiée !", "OK");
+
             }
             else
             {
                 DisplayAlert("Aïe Aïe Aïe", "filiere non modifiée !", "OK");
             }
+            Navigation.PushAsync(new FilierePage());
+        }
+        public void EtudiantItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new EtudiantPage());
+        }
+        public void FiliereItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new FilierePage());
+        }
+
+        public void StatistiqeItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Statistiques());
         }
     }
 }

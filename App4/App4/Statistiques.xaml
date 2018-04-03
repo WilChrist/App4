@@ -3,6 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              x:Class="App4.Statistiques">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Etudiant" Activated="EtudiantItem_Activeted" Order="Secondary"/>
+        <ToolbarItem Text="Filière" Activated="FiliereItem_Activeted" Order="Secondary"/>
+        <ToolbarItem Text="Statistique" Activated="StatistiqeItem_Activeted" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Margin="10,10,10,10">
             <forms:ChartView x:Name="chart" HeightRequest="500"/>

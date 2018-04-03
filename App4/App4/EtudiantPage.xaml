@@ -14,8 +14,7 @@
             <Entry Placeholder="Entrer Votre Sexe"/>
             <DatePicker />
 
-            <Button Text="Enregistrer" 
-                    Clicked="Enregistrer_Clicked"/>
+            <Button Text="Enregistrer" Clicked="Enregistrer_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

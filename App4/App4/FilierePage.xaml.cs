@@ -49,7 +49,7 @@ namespace App4
                 {
                     filireOpration.DeleteFiliere(filiere);
                     list.Remove(filiere);
-                    DisplayAlert("Success", filiere.Nom_filiere +" a été supprimée avec succe", "Ok");
+                    DisplayAlert("Success", ""+filiere.Nom_filiere +" a été supprimée avec succe", "Ok");
                 }
                 else
                 {
@@ -75,6 +75,27 @@ namespace App4
             {
                 filiereListView.ItemsSource = list.Where(x => x.Nom_filiere.StartsWith(e.NewTextValue));
             }
+        }
+
+        public void onSelect(object sender, EventArgs e)
+        {
+            Filiere f = (Filiere)filiereListView.SelectedItem;
+            DisplayAlert(f.Id_fil+"\t"+f.Nom_filiere, f.Responsbale + "\n"+f.Date_creation.ToString("MM/dd/yyyy"), "Ok");
+            
+        }
+
+        public void EtudiantItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new EtudiantPage());
+        }
+        public void FiliereItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new FilierePage());
+        }
+
+        public void StatistiqeItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Statistiques());
         }
 
 
