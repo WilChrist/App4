@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:GestionEtudiant"
              x:Class="GestionEtudiant.MainPage">
     <ContentPage.Content>
+        <StackLayout>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -41,5 +42,6 @@
             </ListView>
             <Button Grid.Row="2" x:Name="ButtonAjouter" Text="Ajouter" Clicked="AjouterEtudiant"></Button>
         </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
