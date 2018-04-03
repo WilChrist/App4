@@ -131,4 +131,7 @@
       <Name>App4</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background_1.jpg" />
+  </ItemGroup>
 </Project>
