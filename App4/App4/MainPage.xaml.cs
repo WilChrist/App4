@@ -27,7 +27,7 @@ namespace App4
         }
         public void EtudiantItem_Activeted(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new EtudiantPagePrincipale());
+            Navigation.PushAsync(new EtudiantPage());
         }
         public void FiliereItem_Activeted(object sender, EventArgs e)
         {

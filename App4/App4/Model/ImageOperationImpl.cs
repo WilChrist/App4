@@ -54,6 +54,7 @@ namespace App4.Model
             try
             {
                 image.Content = File.ReadAllBytes(path);
+                Console.WriteLine("*********************************************"+image.Content.ToString());
             }
             catch (Exception ex)
             {
@@ -67,7 +68,7 @@ namespace App4.Model
             {
                 if (image.Content != null)
                 {
-                    File.WriteAllBytes(path+image.FileName, image.Content);
+                    File.WriteAllBytes(path, image.Content);
                 }
                 else
                 {
@@ -78,7 +79,7 @@ namespace App4.Model
             {
                 Console.WriteLine(ex.ToString());
             }
-            return path + image.FileName;
+            return path;
         }
     
 }

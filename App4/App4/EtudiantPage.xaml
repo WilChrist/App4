@@ -3,21 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App4.EtudiantPage">
     <ContentPage.Content>
-        
-        <StackLayout Margin="10,10,10,10">
-            
-            <Entry Placeholder="Entrer Votre Id de Filière"/>
-            <Entry  Placeholder="Entrer Votre Nom"/>
-            <Entry Placeholder="Entrer Votre Prénom"/>
-            <Entry Placeholder="Entrer Votre Adresse"/>
-            <Entry Placeholder="Entrer Votre Numéro de Téléphone"/>
-            <Entry Placeholder="Entrer Votre Image"/>
-            <Entry Placeholder="Entrer Votre Sexe"/>
-            <DatePicker />
+        <ScrollView>
+            <StackLayout Margin="10,10,10,10" Orientation="Vertical" VerticalOptions="FillAndExpand">
+                <Entry x:Name="nom" Placeholder="Nom"></Entry>
+                <Entry x:Name="prenom" Placeholder="Prenom"></Entry>
+                <Entry x:Name="cne" Placeholder="Cne" Keyboard="Numeric"></Entry>
+                <Entry x:Name="tel" Placeholder="Tel ex:(+212xxxxxxxxx)" Keyboard="Telephone"></Entry>
+                <Button x:Name="takePhoto" Text="Take Photo"></Button>
+                <Button x:Name="pickPhoto" Text="Pick Photo" ></Button>
+                <Label Text="Save to Gallery"/>
+                <Switch x:Name="saveToGallery" IsToggled="false" HorizontalOptions="Center"/>
+                <Label Text="Image will show here"/>
+                <Image x:Name="image"/>
+                <Entry x:Name="gmail" Placeholder="Gmail ex:exemple@hotmail.com" Keyboard="Email"></Entry>
+                <DatePicker />
 
-            <Button Text="Enregistrer" 
+                <Button Text="Enregistrer" 
                     Clicked="Enregistrer_Clicked"/>
-        </StackLayout>
-        
+            </StackLayout>
+        </ScrollView>
+
     </ContentPage.Content>
 </ContentPage>
