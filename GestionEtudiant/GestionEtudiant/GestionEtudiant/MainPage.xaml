@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GestionEtudiant"
+             x:Class="GestionEtudiant.MainPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackLayout  Grid.Row="0">
+                <Picker x:Name="picker" Title="Select a Filiere" SelectedIndexChanged="FiliereChange"/>
+                <Label Text="Test" x:Name="FiliereSelectionnée"/>
+            </StackLayout>
+            <ListView Grid.Row="1" x:Name="ListEtudiants">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="OnUpdate" CommandParameter="{Binding .}" Text="Update" />
+                                <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
+                            </ViewCell.ContextActions>
+                            <!--<ImageCell Text="{Binding nom}" Detail="{Binding cne}" ImageSource="{Binding image}"/>
+                            <TextCell Text="{Binding nom}" Detail="{Binding cne}"></TextCell>
+                            <TextCell Text="{Binding nom}" Detail="{Binding cne}"></TextCell>-->
+                            <StackLayout  Orientation="Horizontal">
+                                <Image Source="{Binding image}"/>
+                                <StackLayout Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding nom}"></Label>
+                                        <Label Text="{Binding prenom}"></Label>
+                                    </StackLayout>
+                                    <Label Text="{Binding cne}"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Grid.Row="2" x:Name="ButtonAjouter" Text="Ajouter" Clicked="AjouterEtudiant"></Button>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

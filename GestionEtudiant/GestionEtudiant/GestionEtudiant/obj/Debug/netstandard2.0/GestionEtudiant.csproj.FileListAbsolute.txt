@@ -1,0 +1,8 @@
+C:\Users\asmaa\source\repos\GestionEtudiant\GestionEtudiant\GestionEtudiant\obj\Debug\netstandard2.0\GestionEtudiant.csprojResolveAssemblyReference.cache
+C:\Users\asmaa\source\repos\GestionEtudiant\GestionEtudiant\GestionEtudiant\obj\Debug\netstandard2.0\GestionEtudiant.csproj.CoreCompileInputs.cache
+C:\Users\asmaa\source\repos\GestionEtudiant\GestionEtudiant\GestionEtudiant\obj\Debug\netstandard2.0\GestionEtudiant.AjoutEtudiant.xaml.g.cs
+C:\Users\asmaa\source\repos\GestionEtudiant\GestionEtudiant\GestionEtudiant\obj\Debug\netstandard2.0\GestionEtudiant.App.xaml.g.cs
+C:\Users\asmaa\source\repos\GestionEtudiant\GestionEtudiant\GestionEtudiant\obj\Debug\netstandard2.0\GestionEtudiant.EtudiantProfil.xaml.g.cs
+C:\Users\asmaa\source\repos\GestionEtudiant\GestionEtudiant\GestionEtudiant\obj\Debug\netstandard2.0\GestionEtudiant.MainPage.xaml.g.cs
+C:\Users\asmaa\source\repos\GestionEtudiant\GestionEtudiant\GestionEtudiant\obj\Debug\netstandard2.0\GestionEtudiant.AssemblyInfoInputs.cache
+C:\Users\asmaa\source\repos\GestionEtudiant\GestionEtudiant\GestionEtudiant\obj\Debug\netstandard2.0\GestionEtudiant.AssemblyInfo.cs
