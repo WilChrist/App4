@@ -2,10 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App4.AjouterFiliere">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Ajouter une filière" Order="Primary"/>
+        <ToolbarItem Text="Etudiant" Activated="EtudiantItem_Activeted" Order="Secondary"/>
+        <ToolbarItem Text="Filière" Activated="FiliereItem_Activeted" Order="Secondary"/>
+        <ToolbarItem Text="Statistique" Activated="StatistiqeItem_Activeted" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Entry x:Name="nom" Placeholder="Nom Filiere"/>
-            <Entry x:Name="resp" Placeholder="Responsable"/>
+        <StackLayout Spacing="20" Padding="20" VerticalOptions="Center">
+            <Entry x:Name="nom" Placeholder="Nom Filiere" TextColor="Black"/>
+            <Entry x:Name="resp" Placeholder="Responsable" TextColor="Black"/>
             <DatePicker x:Name="date" />
 
             <Button Text="Ajouter"  BackgroundColor="#2196F3" 

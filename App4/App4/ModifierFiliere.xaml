@@ -4,16 +4,17 @@
              x:Class="App4.ModifierFiliere">
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Modifier une filière" Order="Primary"/>
         <ToolbarItem Text="Etudiant" Activated="EtudiantItem_Activeted" Order="Secondary"/>
         <ToolbarItem Text="Filière" Activated="FiliereItem_Activeted" Order="Secondary"/>
         <ToolbarItem Text="Statistique" Activated="StatistiqeItem_Activeted" Order="Secondary"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout x:Name="addAnnimation">
-            <Entry x:Name="id" Placeholder="ID filiere" IsEnabled="false"/>
-            <Entry x:Name="nom" Placeholder="Nom Filiere"/>
-            <Entry x:Name="resp" Placeholder="Responsable"/>
-            <DatePicker x:Name="date" Format="dd/MM/yyyy" />
+        <StackLayout x:Name="addAnnimation" Spacing="20" Padding="20" VerticalOptions="Center">
+            <Entry x:Name="id" TextColor="Black" Placeholder="ID filiere" IsEnabled="false"/>
+            <Entry x:Name="nom" TextColor="Black" Placeholder="Nom Filiere"/>
+            <Entry x:Name="resp" TextColor="Black" Placeholder="Responsable"/>
+            <DatePicker x:Name="date" TextColor="Black" Format="dd/MM/yyyy" />
 
             <Button Text="enregistrer les modifications" BackgroundColor="#2196F3"
                     Clicked="Enregistrer_Clicked"/>
