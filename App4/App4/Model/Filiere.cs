@@ -6,7 +6,7 @@ using SQLite;
 
 namespace App4.Model
 {
-    class Filiere:INotifyPropertyChanged
+    public class Filiere:INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -33,7 +33,7 @@ namespace App4.Model
             }
         }
 
-
+        [Unique]
         public string Nom_filiere {
             get { return nom_filiere; }
             set
