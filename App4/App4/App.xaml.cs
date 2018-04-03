@@ -31,12 +31,12 @@ namespace App4
             connection.CreateTable<Etudiant>();
             connection.CreateTable<User>();
             connection.CreateTable<Filiere>();
-            UserOperation uo = new UserOperation(new LoginPage(),connection);
+            /*UserOperation uo = new UserOperation(new LoginPage(),connection);
             User s = new User();
             s.Email = "ensas@ensas.com";
             s.Password = "ensas";
             s.Nom = "ENSAS";
-            uo.AddUser(s);
+            uo.AddUser(s);*/
             MainPage = new LoginPage(DB_PATH);
         }
 
