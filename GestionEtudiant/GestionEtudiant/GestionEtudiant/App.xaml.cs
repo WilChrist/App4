@@ -13,7 +13,7 @@ namespace GestionEtudiant
 		{
 			InitializeComponent();
 
-			MainPage = new GestionEtudiant.MainPage();
+			MainPage = new NavigationPage(new MainPage());
 		}
 
 		protected override void OnStart ()
