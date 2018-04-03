@@ -41,7 +41,7 @@ namespace GestionEtudiant
             if (menuitem != null)
             {
                 var etudiant = menuitem.BindingContext as Etudiant;
-                Navigation.PushAsync(new AjoutEtudiant());
+                Navigation.PushAsync(new AjoutEtudiant(etudiant));
             }
         }
 
@@ -62,6 +62,16 @@ namespace GestionEtudiant
                 }
             }
         }
+        public void More(object sender, EventArgs e)
+        {
+            var menuitem = sender as MenuItem;
+            if (menuitem != null)
+            {
+                var etudiant = menuitem.BindingContext as Etudiant;
+                Navigation.PushAsync(new EtudiantProfil(etudiant));
+            }
+        }
+        
 
 
 

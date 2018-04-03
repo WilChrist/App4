@@ -21,6 +21,7 @@
                         <ViewCell>
                             <ViewCell.ContextActions>
                                 <MenuItem Clicked="OnUpdate" CommandParameter="{Binding .}" Text="Update" />
+                                <MenuItem Clicked="More" CommandParameter="{Binding .}" Text="Profil" />
                                 <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
                             </ViewCell.ContextActions>
                             <!--<ImageCell Text="{Binding nom}" Detail="{Binding cne}" ImageSource="{Binding image}"/>

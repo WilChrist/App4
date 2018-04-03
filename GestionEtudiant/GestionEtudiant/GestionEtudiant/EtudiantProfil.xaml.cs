@@ -14,14 +14,16 @@ namespace GestionEtudiant
 	public partial class EtudiantProfil : ContentPage
 	{
         Etudiant etudiant=new Etudiant();
-		public EtudiantProfil ()
-		{
-			InitializeComponent ();
-		}
+		
         public EtudiantProfil(Etudiant e)
         {
             etudiant = e;
             InitializeComponent();
+            nom.Text = etudiant.nom;
+            prenom.Text = etudiant.prenom;
+            date.Date= etudiant.date;          
+
         }
+        
     }
 }

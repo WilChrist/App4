@@ -23,6 +23,18 @@ namespace GestionEtudiant
             traitementImage();
 
         }
+
+        public AjoutEtudiant(Etudiant e)
+        {
+            Etudiant etudiant = e;
+            InitializeComponent();
+            traitementImage();
+            nom.Text = etudiant.nom;
+            prenom.Text = etudiant.prenom;
+            date.Date = etudiant.date;
+            
+
+        }
         public async void AjouterEtudiant()
         {
             Etudiant etudiant = new Etudiant();

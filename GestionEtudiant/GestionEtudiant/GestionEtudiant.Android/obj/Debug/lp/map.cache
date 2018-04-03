@@ -1,5 +1,10 @@
 FormsViewGroup
 GestionEtudiant
+Plugin.CurrentActivity
+Plugin.Media.Abstractions
+Plugin.Media
+Plugin.Permissions.Abstractions
+Plugin.Permissions
 System.Runtime
 Xamarin.Android.Support.Animated.Vector.Drawable
 Xamarin.Android.Support.Annotations
@@ -21,11 +26,6 @@ Xamarin.Forms.Core
 Xamarin.Forms.Platform.Android
 Xamarin.Forms.Platform
 Xamarin.Forms.Xaml
-Plugin.CurrentActivity
-Plugin.Media.Abstractions
-Plugin.Media
-Plugin.Permissions.Abstractions
-Plugin.Permissions
 netstandard
 System.ComponentModel
 System.Reflection.Extensions
