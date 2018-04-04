@@ -1,6 +1,5 @@
-﻿
+﻿using System;
 using ConsolePourSqlLite;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,18 +13,28 @@ using Plugin.Media;
 namespace App4
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AjoutEtudiant : ContentPage
+	public partial class ModifierEtudiant : ContentPage
 	{
-        
-        public AjoutEtudiant ()
+        Etudiant etudiant;
+
+        public ModifierEtudiant (Etudiant e)
 		{
 			InitializeComponent ();
-            traitementImage();
+            etudiant = e;
             picker.ItemsSource = EtudiantPage.listFiliere;
+            traitementImage();
+            nom.Text = etudiant.Nom;
+            prenom.Text = etudiant.Prenom;
+            date.Date = etudiant.Date_naissance;
+            cne.Text = Convert.ToString(etudiant.Cne);
+            adresse.Text = etudiant.Adresse;
+            tel.Text = etudiant.Telephone;
+            sexe.Text = etudiant.Sexe;
         }
-        public async void AjouterEtudiant()
+
+        public async void ModifieEtudiant()
         {
-            Etudiant etudiant = new Etudiant();
+            EtudiantPage.listEtudiantModel.Remove(etudiant);
             etudiant.Nom = nom.Text;
             etudiant.Prenom = prenom.Text;
             etudiant.Cne = Convert.ToInt32(cne.Text);
@@ -34,7 +43,7 @@ namespace App4
             etudiant.Telephone = tel.Text;
             etudiant.Sexe = sexe.Text;
             EtudiantPage.listEtudiantModel.Add(etudiant);
-            await DisplayAlert("Success", "l'etudiant est ajoutée", "OK");
+            await DisplayAlert("Success", "l'etudiant est modifiée", "OK");
         }
         public void traitementImage()
         {

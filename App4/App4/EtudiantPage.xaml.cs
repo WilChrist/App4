@@ -15,8 +15,8 @@ namespace App4
 	public partial class EtudiantPage : ContentPage
 	{
         EtudiantOperationImpl etudiantOperation;
-        List<string> listFiliere = new List<string>();
-        ObservableCollection<Etudiant> listEtudiantModel;
+        public static List<string> listFiliere = new List<string>();
+        public static ObservableCollection<Etudiant> listEtudiantModel;
 
         public EtudiantPage ()
 		{
@@ -34,7 +34,7 @@ namespace App4
             test.Cne = 15124524;
             test.Image = "icon.png";
             test.Adresse = "Jnane Clonne 2 Safi";
-            test.Date_naissance = Convert.ToDateTime("1/2/1996/");
+            //test.Date_naissance = Convert.ToDateTime("01/02/1996");
             test.Sexe = "Femme";
             test.Telephone = "+21265058090";
             listEtudiantModel.Add(test);
@@ -58,7 +58,7 @@ namespace App4
             if (menuitem != null)
             {
                 var etudiant = menuitem.BindingContext as Etudiant;
-                Navigation.PushAsync(new AjoutEtudiant(etudiant));
+                Navigation.PushAsync(new ModifierEtudiant(etudiant));
             }
         }
 

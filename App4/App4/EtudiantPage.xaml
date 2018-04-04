@@ -39,7 +39,12 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Grid.Row="2" x:Name="ButtonAjouter" Text="Ajouter" Clicked="AjouterEtudiant" ></Button>
+            <!--<Button Grid.Row="2" x:Name="ButtonAjouter" Text="Ajouter" Clicked="AjouterEtudiant" ></Button>-->
+            <Image Grid.Row="2" Source="adduser.png" HeightRequest="60" WidthRequest="60" HorizontalOptions="EndAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="AjouterEtudiant"/>
+                </Image.GestureRecognizers>
+            </Image>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
