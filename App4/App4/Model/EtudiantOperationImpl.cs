@@ -9,6 +9,12 @@ namespace ConsolePourSqlLite
     class EtudiantOperationImpl : IEtudiantOperation
     {
         SQLite.SQLiteConnection database;
+        public object CountStudentPerFiliere(string nom)
+        {
+            var query = database.Query<Etudiant>("SELECT distinct count(*) FROM Etudiant GROUP BY id_fil having nom_filiere = ?",nom);
+            return query;
+        }
+
         public EtudiantOperationImpl()
         {
             throw new NotImplementedException();
@@ -33,14 +39,27 @@ namespace ConsolePourSqlLite
             return database.Table<Etudiant>().ToList();
         }
         
-        public void DeleteEtudiant(Etudiant etudiant)
+        public int DeleteEtudiant(Etudiant etudiant)
         {
-            database.Delete(etudiant);
+            return database.Delete(etudiant);
         }
 
-        public void UpdateEtudiant(Etudiant etudiant)
+        public int UpdateEtudiant(Etudiant etudiant)
         {
-            throw new NotImplementedException();
+            Etudiant e=(Etudiant)database.Find<Etudiant>(etudiant.Cne);
+            int cne = etudiant.Cne;
+            e = etudiant;
+            e.Cne = cne;
+            return database.Update(e);
+
+            /*etudiant.Adresse = e.Adresse;
+            etudiant.Date_naissance = e.Date_naissance;
+            etudiant.Id_fil = e.Id_fil;
+            etudiant.Image = e.Image;
+            etudiant.Nom = e.Nom;
+            etudiant.Prenom = e.Prenom;
+            etudiant.Sexe = e.Sexe;
+            etudiant.Telephone = e.Telephone;*/
         }
     }
 }

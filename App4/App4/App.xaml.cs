@@ -5,6 +5,7 @@ using System.Text;
 using ConsolePourSqlLite;
 using SQLite;
 using Xamarin.Forms;
+using App4.Model;
 
 namespace App4
 {
@@ -20,15 +21,24 @@ namespace App4
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new MainPage());
+			MainPage = new LoginPage();
 		}
         public App(string DB_path)
         {
             InitializeComponent();
             DB_PATH = DB_path;
+
             connection = new SQLite.SQLiteConnection(DB_PATH);
             connection.CreateTable<Etudiant>();
-            MainPage = new NavigationPage(new MainPage());
+            connection.CreateTable<User>();
+            connection.CreateTable<Filiere>();
+            /*UserOperation uo = new UserOperation(new LoginPage(),connection);
+            User s = new User();
+            s.Email = "ensas@ensas.com";
+            s.Password = "ensas";
+            s.Nom = "ENSAS";
+            uo.AddUser(s);*/
+            MainPage = new LoginPage(DB_PATH);
         }
 
 		protected override void OnStart ()
