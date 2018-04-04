@@ -17,12 +17,16 @@ namespace App4
 	public partial class EtudiantPage : ContentPage
 	{
         EtudiantOperationImpl etudiantOperation;
-		public EtudiantPage ()
+        Model.Image img;
+
+        public EtudiantPage ()
 		{
 			InitializeComponent ();
             etudiantOperation = new EtudiantOperationImpl(App.Connection);
             image.Source = ImageSource.FromFile(Height > Width ? "icon.png" : "Cute.jpg");
+            img = new Model.Image();
             traitementImage();
+
         }
         public void Enregistrer_Clicked(object sender, EventArgs e)
         {
@@ -64,12 +68,20 @@ namespace App4
             image.Source = imageOperation.ReadImageToPath(images, p);
             DisplayAlert("po", images.Content.ToString(), "ok");*/
 
-            FileUtility fileUtility = new FileUtility();
+            ImageOperationImpl imageOperation = new ImageOperationImpl(App.Connection);
+            imageOperation.CreateImage(img); 
+
+            App4.Model.Image images = imageOperation.ReadImages().Last();
+            File.WriteAllBytes(images.Id.ToString() + "jpg", images.Content);
+            image.Source = ImageSource.FromFile(images.Id.ToString() + "jpg");
+
+           /* FileUtility fileUtility = new FileUtility();
             image.Source = "icon.png";
             string r=fileUtility.SaveFile("monimage", File.ReadAllBytes(image.Source.ToString()));
             image.Source = "p";
-            image.Source = r;
+            image.Source = r;*/
         }
+
         public void traitementImage()
         {
             takePhoto.Clicked += async (sender, args) =>
@@ -91,11 +103,11 @@ namespace App4
                         return;
                     await DisplayAlert("File Location", (saveToGallery.IsToggled ? file.AlbumPath :
                     file.Path), "OK");
-                    
+
                 }
                 catch //(Exception ex)
                 {
-                    
+
                 }
             };
             pickPhoto.Clicked += async (sender, args) =>
@@ -103,7 +115,7 @@ namespace App4
                 if (!CrossMedia.Current.IsPickPhotoSupported)
                 {
                     await DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
-                return;
+                    return;
                 }
                 try
                 {
@@ -113,15 +125,18 @@ namespace App4
                         return;
                     stream = file.GetStream();
                     file.Dispose();
-                    
+                    //image.Source = ImageSource.FromStream(() => stream);
+                    System.Threading.Thread.Sleep(2000);
+                    stream.Read(img.Content,0,Int32.MaxValue);
+                    //img.Id = (int)DateTime.Now.ToBinary();
                 }
-                catch //(Exception ex)
+                catch (Exception ex)
                 {
-                    
+                    // Xamarin.Insights.Report(ex);
+                    // await DisplayAlert("Uh oh", "Something went wrong, but don't worry we captured
+                    await DisplayAlert("Photo Non enregistrée", ":( error."+ex.Message, "OK");
                 }
             };
         }
-
-
     }
 }

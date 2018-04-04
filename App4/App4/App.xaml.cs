@@ -36,12 +36,12 @@ namespace App4
             
 
             connection.CreateTable<User>();
-            /*UserOperation uo = new UserOperation(connection);
+            UserOperation uo = new UserOperation(connection);
             User s = new User();
             s.Email = "ensas@ensas.com";
             s.Password = "ensas";
             s.Nom = "ENSAS";
-            uo.AddUser(s);*/
+            //uo.AddUser(s);
             MainPage = new LoginPage(DB_PATH);
            
 
