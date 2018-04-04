@@ -28,10 +28,15 @@ namespace App4
 			InitializeComponent ();
             etudiantOperation = new EtudiantOperationImpl(App.Connection);
             filiereOperation = new FiliereOperationImpl(App.Connection);
-            image.Source = ImageSource.FromFile(Height > Width ? "icon.png" : "Cute.jpg");
+            //image.Source = ImageSource.FromFile(Height > Width ? "icon.png" : "Cute.jpg");
             img = new Model.Image();
-            traitementImage();
-            
+            //traitementImage();
+            List<Filiere> filieres = filiereOperation.ReadFilieres();
+            foreach (var fil in filieres)
+            {
+                listFiliere.Add(fil.Nom_filiere);
+            }
+            picker.ItemsSource = listFiliere;
         }
 
         public void EtudiantItem_Activeted(object sender, EventArgs e)
@@ -114,7 +119,7 @@ namespace App4
             test.Nom = "Douiab";
             test.Prenom = "Asmaa";
             test.Cne = 15124524;
-            test.Image = "icon.png";
+            test.Image = 1;
             test.Adresse = "Jnane Clonne 2 Safi";
             test.Date_naissance = Convert.ToDateTime("1/2/1996/");
             test.Sexe = "Femme";
@@ -144,12 +149,12 @@ namespace App4
             image.Source = imageOperation.ReadImageToPath(images, p);
             DisplayAlert("po", images.Content.ToString(), "ok");*/
 
-            ImageOperationImpl imageOperation = new ImageOperationImpl(App.Connection);
+            /*ImageOperationImpl imageOperation = new ImageOperationImpl(App.Connection);
             imageOperation.CreateImage(img); 
 
             App4.Model.Image images = imageOperation.ReadImages().Last();
             File.WriteAllBytes(images.Id.ToString() + "jpg", images.Content);
-            image.Source = ImageSource.FromFile(images.Id.ToString() + "jpg");
+            image.Source = ImageSource.FromFile(images.Id.ToString() + "jpg");*/
 
            /* FileUtility fileUtility = new FileUtility();
             image.Source = "icon.png";
@@ -209,7 +214,7 @@ namespace App4
         }
         
 
-        public void traitementImage()
+        /*public void traitementImage()
         {
             takePhoto.Clicked += async (sender, args) =>
             {
@@ -264,6 +269,6 @@ namespace App4
                     await DisplayAlert("Photo Non enregistrée", ":( error."+ex.Message, "OK");
                 }
             };
-        }
+        }*/
     }
 }

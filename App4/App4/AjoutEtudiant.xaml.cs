@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.IO;
+using App4.Model;
 
 namespace App4
 {
@@ -17,14 +18,21 @@ namespace App4
 	{
 
         List<string> listFiliere = new List<string>();
+        FiliereOperationImpl filiereOperation;
         public AjoutEtudiant ()
 		{
 			InitializeComponent ();
             traitementImage();
-            listFiliere.Add("All");
+            /*listFiliere.Add("All");
             listFiliere.Add("Info");
             listFiliere.Add("GTR");
-            listFiliere.Add("Indus");
+            listFiliere.Add("Indus");*/
+            filiereOperation = new FiliereOperationImpl(App.Connection);
+            List<Filiere> filieres = filiereOperation.ReadFilieres();
+            foreach (var fil in filieres)
+            {
+                listFiliere.Add(fil.Nom_filiere);
+            }
             picker.ItemsSource = listFiliere;
         }
 
@@ -32,11 +40,11 @@ namespace App4
         {
             Etudiant etudiant = e;
             InitializeComponent();
-            listFiliere.Add("All");
+            /*listFiliere.Add("All");
             listFiliere.Add("Info");
             listFiliere.Add("GTR");
-            listFiliere.Add("Indus");
-            picker.ItemsSource = listFiliere;
+            listFiliere.Add("Indus");*/
+            picker.ItemsSource = new Model.FiliereOperationImpl(App.Connection).ReadFilieres();
             traitementImage();
             nom.Text = etudiant.Nom;
             prenom.Text = etudiant.Prenom;
@@ -57,6 +65,7 @@ namespace App4
             etudiant.Adresse = adresse.Text;
             etudiant.Telephone = tel.Text;
             etudiant.Sexe = sexe.Text;
+            new EtudiantOperationImpl(App.Connection).CreateEtudiant(etudiant);
             await DisplayAlert("Success", "l'etudiant est ajoutée", "OK");
         }
         public void traitementImage()

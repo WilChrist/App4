@@ -47,11 +47,13 @@
     <EmbeddedResource Update="Donust.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="EtudiantPagePrincipale.xaml">
-    <EmbeddedResource Update="AjoutEtudiant.xaml">
+    <EmbeddedResource Update="EtudiantPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="EtudiantPage.xaml">
+    <EmbeddedResource Update="EtudiantPagePrincipale.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="AjoutEtudiant.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="EtudiantProfil.xaml">
