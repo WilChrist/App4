@@ -26,6 +26,7 @@ namespace App4.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Microcharts.Droid.Resource.String.library_name = global::App4.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::App4.Droid.Resource.Attribute.actionBarSize;
 			global::Zumero.Resource.Animation.abc_fade_in = global::App4.Droid.Resource.Animation.abc_fade_in;
 			global::Zumero.Resource.Animation.abc_fade_out = global::App4.Droid.Resource.Animation.abc_fade_out;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsolePourSqlLite
 {
-    class Etudiant
+    public class Etudiant
     {
         Int32 cne;
         Int32 id_fil;

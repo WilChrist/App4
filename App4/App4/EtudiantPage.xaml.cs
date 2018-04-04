@@ -4,6 +4,7 @@ using Plugin.Media;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace App4
         EtudiantOperationImpl etudiantOperation;
         FiliereOperationImpl filiereOperation;
         Model.Image img;
+        List<string> listFiliere = new List<string>();
+        ObservableCollection<Etudiant> listEtudiantModel;
 
         public EtudiantPage ()
 		{
@@ -101,17 +104,27 @@ namespace App4
             {
                 etudiantOperation.CreateEtudiant(item);
             }
+            listEtudiantModel = new ObservableCollection<Etudiant>(etudiantOperation.ReadEtudiants());
+            listFiliere.Add("All");
+            listFiliere.Add("Info");
+            listFiliere.Add("GTR");
+            listFiliere.Add("Indus");
+            picker.ItemsSource = listFiliere;
+            Etudiant test = new Etudiant();
+            test.Nom = "Douiab";
+            test.Prenom = "Asmaa";
+            test.Cne = 15124524;
+            test.Image = "icon.png";
+            test.Adresse = "Jnane Clonne 2 Safi";
+            test.Date_naissance = Convert.ToDateTime("1/2/1996/");
+            test.Sexe = "Femme";
+            test.Telephone = "+21265058090";
+            listEtudiantModel.Add(test);
+            ListEtudiants.ItemsSource = listEtudiantModel;
+            BindingContext = listEtudiantModel;
 
-
-           /* var numberOfRows= etudiantOperation.CreateEtudiant(etudiant);
+            /* var numberOfRows= etudiantOperation.CreateEtudiant(etudiant);
                 if (numberOfRows > 0)
-                {
-                    DisplayAlert("Great", "Etudiant correctement ajouté !", "OK");
-                }
-                else
-                {
-                    DisplayAlert("Aïe Aïe Aïe", "Etudiant non ajouté !", "OK");
-                }
             //DisplayAlert("Great", etudiantOperation.ReadEtudiant(1).Prenom, "OK");
             /*for(int i=0; i < etudiantOperation.ReadEtudiants().Count; i++)
             {
@@ -144,6 +157,57 @@ namespace App4
             image.Source = "p";
             image.Source = r;*/
         }
+        public void FiliereChange(object sender, EventArgs e)
+        {
+            var filiereSelected = picker.SelectedItem as string;
+            FiliereSelectionnée.Text = filiereSelected;
+        }
+
+        public void AjouterEtudiant(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AjoutEtudiant());
+            //new AjoutEtudiant();
+        }
+        public void OnUpdate(object sender, EventArgs e)
+        {
+            var menuitem = sender as MenuItem;
+            if (menuitem != null)
+            {
+                var etudiant = menuitem.BindingContext as Etudiant;
+                Navigation.PushAsync(new AjoutEtudiant(etudiant));
+            }
+        }
+
+           
+        public async void OnDelete(object sender, EventArgs e)
+        {
+            var menuitem = sender as MenuItem;
+            if (menuitem != null)
+            {
+                var etudiant = menuitem.BindingContext as Etudiant;
+                var answer = await DisplayAlert("Question?", "Voulez-vous vraiment supprimer l'etuidiant " + etudiant.Nom, "Yes", "No");
+                if (answer)
+                {
+                    listEtudiantModel.Remove(etudiant);
+                    await DisplayAlert("Success", etudiant.Nom + " a été supprimée", "Ok");
+                }
+                else
+                {
+                    return;
+                }
+                
+            }
+        }
+        public void More(object sender, EventArgs e)
+        {
+            var menuitem = sender as MenuItem;
+            if (menuitem != null)
+            {
+                var etudiant = menuitem.BindingContext as Etudiant;
+                Navigation.PushAsync(new EtudiantProfil(etudiant));
+            }
+        }
+        
 
         public void traitementImage()
         {
