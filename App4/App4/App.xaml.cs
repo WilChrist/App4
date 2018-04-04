@@ -30,21 +30,15 @@ namespace App4
 
             connection = new SQLite.SQLiteConnection(DB_PATH);
             connection.CreateTable<Etudiant>();
-
-            connection.CreateTable<App4.Model.Image>();
-           // MainPage = new NavigationPage(new MainPage());
-            
-
             connection.CreateTable<User>();
-            UserOperation uo = new UserOperation(connection);
+            connection.CreateTable<Filiere>();
+            /*UserOperation uo = new UserOperation(new LoginPage(),connection);
             User s = new User();
             s.Email = "ensas@ensas.com";
             s.Password = "ensas";
             s.Nom = "ENSAS";
-            //uo.AddUser(s);
+            uo.AddUser(s);*/
             MainPage = new LoginPage(DB_PATH);
-           
-
         }
 
 		protected override void OnStart ()

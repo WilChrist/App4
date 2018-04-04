@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
 namespace App4.Model
 {
     class UserOperation
     {
         SQLite.SQLiteConnection database;
-
-        public UserOperation(SQLite.SQLiteConnection _database)
+        LoginPage p;
+        public UserOperation(LoginPage _p,SQLite.SQLiteConnection _database)
         {
             database = _database;
+            p = _p;
         }
         //public UserOperation() { }
 
@@ -29,7 +29,14 @@ namespace App4.Model
 
         public void AddUser(User s)
         {
-            database.Insert(s);
+            try
+            {
+                database.Insert(s);
+            }
+            catch(Exception e)
+            {
+                p.DisplayAlert("ERREUR", e.Message, "ok"); 
+            }
         }
     }
 }

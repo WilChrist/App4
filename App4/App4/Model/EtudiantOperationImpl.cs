@@ -9,6 +9,12 @@ namespace ConsolePourSqlLite
     class EtudiantOperationImpl : IEtudiantOperation
     {
         SQLite.SQLiteConnection database;
+        public object CountStudentPerFiliere(string nom)
+        {
+            var query = database.Query<Etudiant>("SELECT distinct count(*) FROM Etudiant GROUP BY id_fil having nom_filiere = ?",nom);
+            return query;
+        }
+
         public EtudiantOperationImpl()
         {
             throw new NotImplementedException();

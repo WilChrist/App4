@@ -26,7 +26,7 @@ namespace App4
         public LoginPage(String path)
         {
             InitializeComponent();
-            outil = new UserOperation(new SQLite.SQLiteConnection(path));
+            outil = new UserOperation(this,new SQLite.SQLiteConnection(path));
 
             //emailField.SetBinding(Entry.TextProperty, email.Value,BindingMode.TwoWay);
         }

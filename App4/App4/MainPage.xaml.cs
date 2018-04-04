@@ -1,4 +1,5 @@
-﻿using ConsolePourSqlLite;
+﻿using App4.Model;
+using ConsolePourSqlLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,12 @@ namespace App4
             base.OnAppearing();
             using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.DB_PATH1))
             {
+                connection.CreateTable<Filiere>();
+                var filieres = connection.Table<Filiere>().ToList();
                 connection.CreateTable<Etudiant>();
                 var etudiants = connection.Table<Etudiant>().ToList();
                 etudiantIListView.ItemsSource = etudiants;
+               
             }
         }
         public void EtudiantItem_Activeted(object sender, EventArgs e)
@@ -33,5 +37,11 @@ namespace App4
         {
             Navigation.PushAsync(new FilierePage());
         }
+
+        public void StatistiqeItem_Activeted(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Statistiques());
+        }
+
     }
 }
