@@ -12,6 +12,7 @@
             <StackLayout  Grid.Row="0">
                 <Picker x:Name="picker" Title="Select a Filiere" SelectedIndexChanged="FiliereChange"/>
                 <Label Text="Test" x:Name="FiliereSelectionnée"/>
+                <Label x:Name="teste"></Label>
             </StackLayout>
             <ListView Grid.Row="1" x:Name="ListEtudiants">
                 <ListView.ItemTemplate>
@@ -26,13 +27,14 @@
                             <TextCell Text="{Binding nom}" Detail="{Binding cne}"></TextCell>
                             <TextCell Text="{Binding nom}" Detail="{Binding cne}"></TextCell>-->
                             <StackLayout  Orientation="Horizontal">
-                                <Image Source="{Binding Image}"/>
+                                <Image x:Name="imagee" Source="{Binding MyProperty}"/>
                                 <StackLayout Orientation="Vertical">
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Nom}"></Label>
                                         <Label Text="{Binding Prenom}"></Label>
                                     </StackLayout>
                                     <Label Text="{Binding Cne}"></Label>
+                                    
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Threading;
 
 namespace App4
 {
@@ -19,15 +20,55 @@ namespace App4
 	{
         EtudiantOperationImpl etudiantOperation;
         FiliereOperationImpl filiereOperation;
+        ImageOperationImpl imageOperationImpl;
         Model.Image img;
         List<string> listFiliere = new List<string>();
         ObservableCollection<Etudiant> listEtudiantModel;
+        //juste pour l'affichage
+        ObservableCollection<EtudiantForView> listEtudiantModelForView;
+        
+        /// <summary>
+        /// convertir les Etudiants en EtudiantForView et créer la collection d'Etudiants pour l'affichage
+        /// </summary>
+        public void Remplir()
+        {
+            foreach (var etudiant in etudiantOperation.ReadEtudiants())
+            {
+                EtudiantForView e = new EtudiantForView();
+                e.Adresse = etudiant.Adresse;
+                e.Cne = etudiant.Cne;
+                e.Date_naissance = etudiant.Date_naissance;
+                e.Id_fil = etudiant.Id_fil;
+                e.Image = etudiant.Image;
+                Model.Image image = new Model.Image();
+                //DisplayAlert("ss", "e.image="+e.Image.ToString(), "okkk");
+                
+                image=imageOperationImpl.ReadImage(e.Image);
+                ImageWithSource imageWithSource = new ImageWithSource(image);
+                imageWithSource.ImageSource = imageOperationImpl.CreateSource(image.Content);
+                e.ImageWithSource = imageWithSource;
+                ButtonAjouter.Text = e.ImageWithSource.Content.Length.ToString();
+               // Xamarin.Forms.Image imag = new Xamarin.Forms.Image();
+                //imag.Source = imageWithSource.ImageSource;
+                
+                //this.Content = imag;
+                //Thread.Sleep(3000);
+                e.Nom = etudiant.Nom;
+                e.Prenom = etudiant.Prenom;
+                e.Sexe = etudiant.Sexe;
+                e.Telephone = etudiant.Telephone;
+
+                listEtudiantModelForView.Add(e);
+            }
+            DisplayAlert("Operation Succeed", "EtudiantForView Ready", "OK");
+        }
 
         public EtudiantPage ()
 		{
 			InitializeComponent ();
             etudiantOperation = new EtudiantOperationImpl(App.Connection);
             filiereOperation = new FiliereOperationImpl(App.Connection);
+            imageOperationImpl = new ImageOperationImpl(App.Connection);
             //image.Source = ImageSource.FromFile(Height > Width ? "icon.png" : "Cute.jpg");
             img = new Model.Image();
             //traitementImage();
@@ -37,6 +78,22 @@ namespace App4
                 listFiliere.Add(fil.Nom_filiere);
             }
             picker.ItemsSource = listFiliere;
+            listEtudiantModel = new ObservableCollection<Etudiant>(etudiantOperation.ReadEtudiants());
+            listEtudiantModelForView = new ObservableCollection<EtudiantForView>();Remplir();
+            DisplayAlert("col", listEtudiantModel.Count.ToString(), "pok");
+            
+
+            /*foreach (var img in imageOperationImpl.ReadImages())
+            {
+                img.ImageSource = imageOperationImpl.CreateSource(img.Content);
+            }*/
+            /*foreach (var etu in listEtudiantModel)
+            {
+                Model.Image i=imageOperationImpl.ReadImage(etu.Image);
+                
+            }*/
+            ListEtudiants.ItemsSource = listEtudiantModelForView;
+            BindingContext = listEtudiantModelForView;
         }
 
         public void EtudiantItem_Activeted(object sender, EventArgs e)

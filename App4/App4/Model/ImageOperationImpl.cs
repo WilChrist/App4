@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Xamarin.Forms;
 
 namespace App4.Model
 {
@@ -81,6 +82,15 @@ namespace App4.Model
             }
             return path;
         }
-    
+    public ImageSource CreateSource(object value)
+        {
+            ImageSource retSource = null;
+            if (value != null)
+            {
+                byte[] imageAsBytes = (byte[])value;
+                retSource = ImageSource.FromStream(() => new MemoryStream(imageAsBytes));
+            }
+            return retSource;
+        }
 }
 }

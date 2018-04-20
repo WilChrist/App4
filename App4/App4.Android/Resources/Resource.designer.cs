@@ -27,6 +27,8 @@ namespace App4.Droid
 		public static void UpdateIdValues()
 		{
 			global::Microcharts.Droid.Resource.String.library_name = global::App4.Droid.Resource.String.library_name;
+			global::PCLStorage.Resource.String.ApplicationName = global::App4.Droid.Resource.String.ApplicationName;
+			global::PCLStorage.Resource.String.Hello = global::App4.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::App4.Droid.Resource.Attribute.actionBarSize;
 			global::Zumero.Resource.Animation.abc_fade_in = global::App4.Droid.Resource.Animation.abc_fade_in;
 			global::Zumero.Resource.Animation.abc_fade_out = global::App4.Droid.Resource.Animation.abc_fade_out;
@@ -706,6 +708,8 @@ namespace App4.Droid
 			global::Zumero.Resource.Layout.select_dialog_multichoice_material = global::App4.Droid.Resource.Layout.select_dialog_multichoice_material;
 			global::Zumero.Resource.Layout.select_dialog_singlechoice_material = global::App4.Droid.Resource.Layout.select_dialog_singlechoice_material;
 			global::Zumero.Resource.Layout.support_simple_spinner_dropdown_item = global::App4.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
+			global::Zumero.Resource.String.ApplicationName = global::App4.Droid.Resource.String.ApplicationName;
+			global::Zumero.Resource.String.Hello = global::App4.Droid.Resource.String.Hello;
 			global::Zumero.Resource.String.abc_action_bar_home_description = global::App4.Droid.Resource.String.abc_action_bar_home_description;
 			global::Zumero.Resource.String.abc_action_bar_up_description = global::App4.Droid.Resource.String.abc_action_bar_up_description;
 			global::Zumero.Resource.String.abc_action_menu_overflow_description = global::App4.Droid.Resource.String.abc_action_menu_overflow_description;
@@ -5254,6 +5258,12 @@ namespace App4.Droid
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f07003e
+			public const int ApplicationName = 2131165246;
+			
+			// aapt resource value: 0x7f07003d
+			public const int Hello = 2131165245;
 			
 			// aapt resource value: 0x7f070016
 			public const int abc_action_bar_home_description = 2131165206;
