@@ -9,6 +9,7 @@
             <ToolbarItem Text="Courbe" Activated="CourbeItem_Activeted"/>
     </ContentPage.ToolbarItems>
     <StackLayout Margin="10,10,10,10">
+        <!--Button Grid.Row="2" x:Name="show" Text="show" Clicked="show" -->
         <forms:ChartView x:Name="chart" HeightRequest="500"/>
     </StackLayout>
 </ContentPage>

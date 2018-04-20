@@ -13,12 +13,16 @@ using App4.Model;
 
 namespace App4
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AjoutEtudiant : ContentPage
 	{
 
         List<string> listFiliere = new List<string>();
         FiliereOperationImpl filiereOperation;
+        ImageOperationImpl imageOperationImpl;
+        EtudiantOperationImpl etudiantOperationImpl;
+        Model.Image img;
         public AjoutEtudiant ()
 		{
 			InitializeComponent ();
@@ -28,12 +32,15 @@ namespace App4
             listFiliere.Add("GTR");
             listFiliere.Add("Indus");*/
             filiereOperation = new FiliereOperationImpl(App.Connection);
+            imageOperationImpl = new ImageOperationImpl(App.Connection);
+            etudiantOperationImpl = new EtudiantOperationImpl(App.Connection);
             List<Filiere> filieres = filiereOperation.ReadFilieres();
             foreach (var fil in filieres)
             {
                 listFiliere.Add(fil.Nom_filiere);
             }
             picker.ItemsSource = listFiliere;
+            img = new Model.Image();
         }
 
         public AjoutEtudiant(Etudiant e)
@@ -53,11 +60,18 @@ namespace App4
             adresse.Text= etudiant.Adresse ;
             tel.Text = etudiant.Telephone;
             sexe.Text = etudiant.Sexe;
+
             
+            img = imageOperationImpl.ReadImage(etudiantOperationImpl.ReadEtudiant(e.Cne).Image);
+            ImageWithSource imageWithSource = new ImageWithSource(img);
+            imageWithSource.ImageSource = imageOperationImpl.CreateSource(img.Content);
+            image.Source = imageWithSource.ImageSource;
+
         }
         public async void AjouterEtudiant()
         {
             Etudiant etudiant = new Etudiant();
+            //img = new Model.Image();
             etudiant.Nom = nom.Text;
             etudiant.Prenom = prenom.Text;
             etudiant.Cne = Convert.ToInt32(cne.Text);
@@ -65,8 +79,17 @@ namespace App4
             etudiant.Adresse = adresse.Text;
             etudiant.Telephone = tel.Text;
             etudiant.Sexe = sexe.Text;
-            new EtudiantOperationImpl(App.Connection).CreateEtudiant(etudiant);
-            await DisplayAlert("Success", "l'etudiant est ajoutée", "OK");
+            EtudiantOperationImpl etudiantOperationImpl = new EtudiantOperationImpl(App.Connection);
+            //int iii=
+            
+            int idd = -1;
+            imageOperationImpl.CreateImage(img);
+            idd = imageOperationImpl.ReadImages().Last().Id;
+            etudiant.Image = idd;
+            //etudiantOperationImpl.ReadEtudiants().Last().Image = idd;
+
+            etudiantOperationImpl.CreateEtudiant(etudiant);
+            await DisplayAlert(" Success lastimg.id="+idd.ToString(), " l'etudiant est ajoutée Image.Id= "+ etudiantOperationImpl.ReadEtudiants().Last().Image.ToString(), "OK");
         }
         public void traitementImage()
         {
@@ -110,16 +133,46 @@ namespace App4
                     if (file == null)
                         return;
                     stream = file.GetStream();
-                    file.Dispose();
+                    //file.Dispose();
                     image.Source = ImageSource.FromStream(() => stream);
+                    /*image.Source = ImageSource.FromStream(() =>
+                    {
+                        var stream = file.GetStream();
+                        file.Dispose();
+                        return stream;
+                    });*/
+                    var memoryStream = new MemoryStream();
+                        file.GetStream().CopyTo(memoryStream);
+                        file.Dispose();
+                        img.Content=memoryStream.ToArray();
+                    await DisplayAlert("img", img.Content.Length.ToString(), "ok");
+                    img.FileName = DateTime.Now.ToFileTimeUtc().ToString()+".jpg";
                 }
-                catch //(Exception ex)
+                catch (Exception ex)
                 {
                     // Xamarin.Insights.Report(ex);
                     // await DisplayAlert("Uh oh", "Something went wrong, but don't worry we captured
-                    await DisplayAlert("Photo Non enregistrée", ":( error.", "OK");
+                    await DisplayAlert("Photo Non enregistrée", ":( error."+ex.Message, "OK");
                 }
             };
+        }
+        public class ByteToImageFieldConverter : IValueConverter
+        {
+            public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+            {
+                ImageSource retSource = null;
+                if (value != null)
+                {
+                    byte[] imageAsBytes = (byte[])value;
+                    retSource = ImageSource.FromStream(() => new MemoryStream(imageAsBytes));
+                }
+                return retSource;
+            }
+
+            public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
