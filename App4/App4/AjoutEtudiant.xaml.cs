@@ -47,6 +47,9 @@ namespace App4
         {
             Etudiant etudiant = e;
             InitializeComponent();
+            filiereOperation = new FiliereOperationImpl(App.Connection);
+            imageOperationImpl = new ImageOperationImpl(App.Connection);
+            etudiantOperationImpl = new EtudiantOperationImpl(App.Connection);
             /*listFiliere.Add("All");
             listFiliere.Add("Info");
             listFiliere.Add("GTR");
@@ -89,7 +92,9 @@ namespace App4
             //etudiantOperationImpl.ReadEtudiants().Last().Image = idd;
 
             etudiantOperationImpl.CreateEtudiant(etudiant);
-            await DisplayAlert(" Success lastimg.id="+idd.ToString(), " l'etudiant est ajoutée Image.Id= "+ etudiantOperationImpl.ReadEtudiants().Last().Image.ToString(), "OK");
+            await DisplayAlert(" Success", " l'etudiant est ajoutée ", "OK");
+
+            //await DisplayAlert(" Success lastimg.id="+idd.ToString(), " l'etudiant est ajoutée Image.Id= "+ etudiantOperationImpl.ReadEtudiants().Last().Image.ToString(), "OK");
         }
         public void traitementImage()
         {
