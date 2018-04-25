@@ -18,11 +18,13 @@ namespace App4
         EtudiantForView ee;
         EtudiantOperationImpl etudiantOperation;
         ImageOperationImpl imageOperationImpl;
+        FiliereOperationImpl filiereOperationImpl;
         public EtudiantProfil(Etudiant e)
 		{
 			InitializeComponent ();
             etudiantOperation = new EtudiantOperationImpl(App.Connection);
             imageOperationImpl = new ImageOperationImpl(App.Connection);
+            filiereOperationImpl = new FiliereOperationImpl(App.Connection);
 
             etudiant = e;
             ee = new EtudiantForView();
@@ -49,9 +51,19 @@ namespace App4
             prenom.Text = etudiant.Prenom;
             adresse.Text = etudiant.Adresse;
             tel.Text = etudiant.Telephone;
+            Filiere f = new Filiere();
+            f.Id_fil = ee.Id_fil;
             sexe.Text = etudiant.Sexe;
-            date.Date = etudiant.Date_naissance;
+            date.Text = etudiant.Date_naissance.ToLongDateString();
             image.Source = ee.MyProperty;
+
+            try
+            {
+                filiere.Text = filiereOperationImpl.ReadFilieres().SingleOrDefault(fil => fil.Id_fil == f.Id_fil).Nom_filiere;
+
+            }
+            catch (Exception ex) { };
+            
         }
 	}
 }
