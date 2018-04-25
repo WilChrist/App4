@@ -35,6 +35,7 @@ namespace App4
             imageOperationImpl = new ImageOperationImpl(App.Connection);
             etudiantOperationImpl = new EtudiantOperationImpl(App.Connection);
             List<Filiere> filieres = filiereOperation.ReadFilieres();
+            //listFiliere.Add(" ");
             foreach (var fil in filieres)
             {
                 listFiliere.Add(fil.Nom_filiere);
@@ -54,7 +55,13 @@ namespace App4
             listFiliere.Add("Info");
             listFiliere.Add("GTR");
             listFiliere.Add("Indus");*/
-            picker.ItemsSource = new Model.FiliereOperationImpl(App.Connection).ReadFilieres();
+            List<Filiere> filieres = filiereOperation.ReadFilieres();
+            //listFiliere.Add(" ");
+            foreach (var fil in filieres)
+            {
+                listFiliere.Add(fil.Nom_filiere);
+            }
+            picker.ItemsSource = listFiliere;
             traitementImage();
             nom.Text = etudiant.Nom;
             prenom.Text = etudiant.Prenom;
@@ -63,8 +70,8 @@ namespace App4
             adresse.Text= etudiant.Adresse ;
             tel.Text = etudiant.Telephone;
             sexe.Text = etudiant.Sexe;
+            //picker.SelectedItem= filiereOperation.ReadFilieres().SingleOrDefault(fil=>fil.Id_fil== etudiant.Id_fil).Nom_filiere;
 
-            
             img = imageOperationImpl.ReadImage(etudiantOperationImpl.ReadEtudiant(e.Cne).Image);
             ImageWithSource imageWithSource = new ImageWithSource(img);
             imageWithSource.ImageSource = imageOperationImpl.CreateSource(img.Content);
@@ -82,6 +89,7 @@ namespace App4
             etudiant.Adresse = adresse.Text;
             etudiant.Telephone = tel.Text;
             etudiant.Sexe = sexe.Text;
+            etudiant.Id_fil = filiereOperation.ReadFilieres().SingleOrDefault(fil=>fil.Nom_filiere==picker.SelectedItem.ToString()).Id_fil;
             EtudiantOperationImpl etudiantOperationImpl = new EtudiantOperationImpl(App.Connection);
             //int iii=
             
@@ -92,7 +100,7 @@ namespace App4
             //etudiantOperationImpl.ReadEtudiants().Last().Image = idd;
 
             etudiantOperationImpl.CreateEtudiant(etudiant);
-            await DisplayAlert(" Success", " l'etudiant est ajoutée ", "OK");
+            await DisplayAlert(" Success ", " L'etudiant est ajoutée ", "OK");
 
             //await DisplayAlert(" Success lastimg.id="+idd.ToString(), " l'etudiant est ajoutée Image.Id= "+ etudiantOperationImpl.ReadEtudiants().Last().Image.ToString(), "OK");
         }

@@ -29,7 +29,7 @@ namespace App4
             var nbr=filireOpration.CreateFiliere(f1);
             if (nbr > 0)
             {
-                DisplayAlert("Great", "filiere correctement ajouté !", "OK");
+                DisplayAlert("Great"+filireOpration.ReadFilieres().Last().Id_fil.ToString(), "filiere correctement ajouté !", "OK");
                 nom.Text = "";
                 resp.Text = "";
                 date.Date = date.Date;
