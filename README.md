@@ -1,25 +1,23 @@
 # Application Xamarin Forms de gestion d'étudiant réalisée comme mini-projet du module C#/.Net Avancé.
-_4e Année GI Ensa safi 2018_
+_4e Année GINF Ensa safi 2018_
 
 ## Partie 1: Architecture
-    L'application que nous avons réalisée reprend essentiellement les mêmes éléments du cahier de charge du projet WPF, 
-    puisque vous avez dit lors de la reunion des chefs de groupe que le plus important pour ce projet c'était d'acquerir 
-    les bases du developpement d'une application mobile avec Xamarin.
-    Ainsi, Notre application aura l'arborescence suivante:
+L'application que nous avons réalisée reprend essentiellement les mêmes éléments du cahier de charge du projet WPF, le plus important pour ce projet c'était d'acquerir les bases du developpement d'une application mobile avec Xamarin.
+**Ainsi, Notre application aura l'arborescence suivante:**
 * Une Page de Login: qui permet de se connecter à l'application, puis elle nous redirige vers la page Principale.
 * Une Page Principale (MainPage) permettant de se rendre aux différentes Pages de Navigation suivantes:
-* EtudiantPagePrincipale : qui affiche la liste des etudiants inscrits et permet de les supprimer, 
+* `EtudiantPagePrincipale` : qui affiche la liste des etudiants inscrits et permet de les supprimer, 
             ou de se rendre sur les pages:
   - Ajout d'Etudiant
   - Modification d'Etudiant
-* FilierePagePrincipale : qui affiche la liste des filères et permet via un menu contextuel de 
+* `FilierePagePrincipale` : qui affiche la liste des filères et permet via un menu contextuel de 
             les supprimer et des modifier. Elle permet ausi de se rendre sur la page suivant:
   - Ajout de Nouvelle Filière.
-* StatistiquePage: qui permet d'afficher les statistiques d'étudiants par filière.
+* `StatistiquePage`: qui permet d'afficher les statistiques d'étudiants par filière.
 
 
 ## Partie 2: Etape d'implémentation
-    L'implémentation de cette application s'est déroulée dans ses grandes lignes ainsi:
+L'implémentation de cette application s'est déroulée dans ses grandes lignes ainsi:
 - Apprentissage rapide de la mise sur pied d'un projet xamarin form (via youtube)
 - Mise en place du projet, installation des paquets communs et création d'une master branch sur github 
         avec le projet dans son état actuel.
