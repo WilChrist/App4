@@ -11,7 +11,7 @@
                 <Entry x:Name="adresse" Placeholder="Adresse"></Entry>
                 <Entry x:Name="sexe" Placeholder="Sexe"></Entry>
                 <Entry x:Name="prenom" Placeholder="Prenom"></Entry>
-                <Entry x:Name="cne" Placeholder="Cne" Keyboard="Numeric"></Entry>
+                <Entry x:Name="cne" Placeholder="Cne" Keyboard="Numeric" IsEnabled="False"></Entry>
                 <DatePicker x:Name="date" Format="dd/MM/yyyy" />
                 <Entry x:Name="tel" Placeholder="Tel ex:(+212xxxxxxxxx)" Keyboard="Telephone"></Entry>
                 <Button x:Name="takePhoto" Text="Take Photo"></Button>
@@ -21,7 +21,7 @@
                 <Entry x:Name="gmail" Placeholder="Gmail ex:exemple@hotmail.com" Keyboard="Email"></Entry>
                 <Picker x:Name="picker" Title="Select a Filiere"/>
                 <Label Text="Test" x:Name="FiliereSelectionnée"/>
-                <Button Text="Save" Clicked="AjouterEtudiant"></Button>
+                <Button Text="Save" Clicked="AjouterEtudiant" BackgroundColor="#81C134"  BorderRadius="0" TextColor="White"></Button>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

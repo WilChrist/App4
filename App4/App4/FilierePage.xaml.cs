@@ -49,7 +49,7 @@ namespace App4
                 {
                     filireOpration.DeleteFiliere(filiere);
                     list.Remove(filiere);
-                    DisplayAlert("Success", ""+filiere.Nom_filiere +" a été supprimée avec succe", "Ok");
+                    await DisplayAlert("Success", ""+filiere.Nom_filiere +" a été supprimée avec succes", "Ok");
                 }
                 else
                 {

@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.ComponentModel.Design;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace App4
 {
@@ -29,18 +30,23 @@ namespace App4
             outil = new UserOperation(this,new SQLite.SQLiteConnection(path));
 
             //emailField.SetBinding(Entry.TextProperty, email.Value,BindingMode.TwoWay);
+           
+            
         }
 
 
 
         void Handle_Clicked(object sender, System.EventArgs e)
         {
+            //ConsolePourSqlLite.EtudiantOperationImpl etudiantOperation = new ConsolePourSqlLite.EtudiantOperationImpl(App.Connection);
+
+            //DisplayAlert("ss", "e.image=" + etudiantOperation.ReadEtudiants().Last().Image.ToString(), "okkk");
             String email = "", password ="";
              email = emailField.Text;
              password = passwordField.Text;
 
-            
 
+            
              if(email!=null && password!=null)
              {
                 if (Regex.IsMatch(email, "^([\\w\\.\\-]+)@([\\w\\-]+)((\\.(\\w){2,3})+)$"))

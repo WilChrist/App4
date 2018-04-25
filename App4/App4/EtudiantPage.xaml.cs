@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Threading;
 
 namespace App4
 {
@@ -19,15 +20,56 @@ namespace App4
 	{
         EtudiantOperationImpl etudiantOperation;
         FiliereOperationImpl filiereOperation;
+        ImageOperationImpl imageOperationImpl;
         Model.Image img;
         List<string> listFiliere = new List<string>();
         ObservableCollection<Etudiant> listEtudiantModel;
+        //juste pour l'affichage
+        ObservableCollection<EtudiantForView> listEtudiantModelForView;
+        ObservableCollection<EtudiantForView> listEtudiantModelForView2;
+
+        /// <summary>
+        /// convertir les Etudiants en EtudiantForView et créer la collection d'Etudiants pour l'affichage
+        /// </summary>
+        public void Remplir()
+        {
+            foreach (var etudiant in etudiantOperation.ReadEtudiants())
+            {
+                EtudiantForView e = new EtudiantForView();
+                e.Adresse = etudiant.Adresse;
+                e.Cne = etudiant.Cne;
+                e.Date_naissance = etudiant.Date_naissance;
+                e.Id_fil = etudiant.Id_fil;
+                e.Image = etudiant.Image;
+                Model.Image image = new Model.Image();
+                //DisplayAlert("ss", "e.image="+e.Image.ToString(), "okkk");
+                
+                image=imageOperationImpl.ReadImage(e.Image);
+                ImageWithSource imageWithSource = new ImageWithSource(image);
+                imageWithSource.ImageSource = imageOperationImpl.CreateSource(image.Content);
+                e.ImageWithSource = imageWithSource;
+                //ButtonAjouter.Text = e.ImageWithSource.Content.Length.ToString();
+               // Xamarin.Forms.Image imag = new Xamarin.Forms.Image();
+                //imag.Source = imageWithSource.ImageSource;
+                
+                //this.Content = imag;
+                //Thread.Sleep(3000);
+                e.Nom = etudiant.Nom;
+                e.Prenom = etudiant.Prenom;
+                e.Sexe = etudiant.Sexe;
+                e.Telephone = etudiant.Telephone;
+
+                listEtudiantModelForView.Add(e);
+            }
+            DisplayAlert("Operation Succeed", "EtudiantForView Ready", "OK");
+        }
 
         public EtudiantPage ()
 		{
 			InitializeComponent ();
             etudiantOperation = new EtudiantOperationImpl(App.Connection);
             filiereOperation = new FiliereOperationImpl(App.Connection);
+            imageOperationImpl = new ImageOperationImpl(App.Connection);
             //image.Source = ImageSource.FromFile(Height > Width ? "icon.png" : "Cute.jpg");
             img = new Model.Image();
             //traitementImage();
@@ -37,6 +79,24 @@ namespace App4
                 listFiliere.Add(fil.Nom_filiere);
             }
             picker.ItemsSource = listFiliere;
+            listEtudiantModel = new ObservableCollection<Etudiant>(etudiantOperation.ReadEtudiants());
+            listEtudiantModelForView = new ObservableCollection<EtudiantForView>();
+            listEtudiantModelForView2 = new ObservableCollection<EtudiantForView>();
+            Remplir();
+            DisplayAlert("col", listEtudiantModel.Count.ToString(), "pok");
+            
+
+            /*foreach (var img in imageOperationImpl.ReadImages())
+            {
+                img.ImageSource = imageOperationImpl.CreateSource(img.Content);
+            }*/
+            /*foreach (var etu in listEtudiantModel)
+            {
+                Model.Image i=imageOperationImpl.ReadImage(etu.Image);
+                
+            }*/
+            ListEtudiants.ItemsSource = listEtudiantModelForView;
+            BindingContext = listEtudiantModelForView;
         }
 
         public void EtudiantItem_Activeted(object sender, EventArgs e)
@@ -55,117 +115,18 @@ namespace App4
 
         public void Enregistrer_Clicked(object sender, EventArgs e)
         {
-            List<Filiere> filieres = new List<Filiere>
-            {
-                new Filiere(){Nom_filiere = "génie informatique" },
-                new Filiere(){Nom_filiere = "génie industriel" },
-                new Filiere(){Nom_filiere = "génie procedes" },
-                new Filiere(){Nom_filiere = "génie telecome" }
-            };
-            foreach (var item in filieres)
-            {
-                filiereOperation.CreateFiliere(item);
-            }
-
-            List<Etudiant> etudiants = new List<Etudiant>
-            {
-                new Etudiant()
-                {
-                    Cne = 1,
-                    Nom = "Nzesseu",
-                    Prenom = "Willy",
-                    Id_fil = 1
-                },
-                new Etudiant()
-                {
-                    Cne = 78,
-                    Nom = "Alaa",
-                    Prenom = "khouloud",
-                    Id_fil = 1
-                },
-                new Etudiant()
-                {
-                    Cne = 121,
-                    Nom = "herraz",
-                    Prenom = "Imane",
-                    Id_fil = 1
-                },
-                new Etudiant()
-                {
-                    Cne = 15,
-                    Nom = "Asmaa",
-                    Prenom = "bj",
-                    Id_fil = 2
-                },
-                new Etudiant()
-                {
-                    Cne = 154,
-                    Nom = "Ezzahraoui",
-                    Prenom = "meriem",
-                    Id_fil = 2
-                }
-            };
-            foreach (var item in etudiants)
-            {
-                etudiantOperation.CreateEtudiant(item);
-            }
-            listEtudiantModel = new ObservableCollection<Etudiant>(etudiantOperation.ReadEtudiants());
-            listFiliere.Add("All");
-            listFiliere.Add("Info");
-            listFiliere.Add("GTR");
-            listFiliere.Add("Indus");
-            picker.ItemsSource = listFiliere;
-            Etudiant test = new Etudiant();
-            test.Nom = "Douiab";
-            test.Prenom = "Asmaa";
-            test.Cne = 15124524;
-            test.Image = 1;
-            test.Adresse = "Jnane Clonne 2 Safi";
-            test.Date_naissance = Convert.ToDateTime("1/2/1996/");
-            test.Sexe = "Femme";
-            test.Telephone = "+21265058090";
-            listEtudiantModel.Add(test);
-            ListEtudiants.ItemsSource = listEtudiantModel;
-            BindingContext = listEtudiantModel;
-
-            /* var numberOfRows= etudiantOperation.CreateEtudiant(etudiant);
-                if (numberOfRows > 0)
-            //DisplayAlert("Great", etudiantOperation.ReadEtudiant(1).Prenom, "OK");
-            /*for(int i=0; i < etudiantOperation.ReadEtudiants().Count; i++)
-            {
-                DisplayAlert("Great", etudiantOperation.ReadEtudiant(i).Prenom, "OK");
-            }*/
-            // DisplayAlert("Great", etudiantOperation.ReadEtudiants().Count.ToString(), "OK");
-            //etudiantOperation.DeleteEtudiant(etudiantOperation.ReadEtudiants().Last());
-
-            /*ImageOperationImpl imageOperation = new ImageOperationImpl(App.Connection);
-            imageOperation.CreateImageFromPath("icon.png", "Image1");
-            App4.Model.Image images = imageOperation.ReadImages().Last();
-
-           // etudiantOperation.ReadEtudiants().Last().Image = image.Id;
-            DisplayAlert(imageOperation.ReadImages().Count.ToString(),images.FileName, "Yes");
-            string p="Cute.jpg";
-            DisplayAlert("source", image.Source.ToString(), "ok");
-            image.Source = imageOperation.ReadImageToPath(images, p);
-            DisplayAlert("po", images.Content.ToString(), "ok");*/
-
-            /*ImageOperationImpl imageOperation = new ImageOperationImpl(App.Connection);
-            imageOperation.CreateImage(img); 
-
-            App4.Model.Image images = imageOperation.ReadImages().Last();
-            File.WriteAllBytes(images.Id.ToString() + "jpg", images.Content);
-            image.Source = ImageSource.FromFile(images.Id.ToString() + "jpg");*/
-
-           /* FileUtility fileUtility = new FileUtility();
-            image.Source = "icon.png";
-            string r=fileUtility.SaveFile("monimage", File.ReadAllBytes(image.Source.ToString()));
-            image.Source = "p";
-            image.Source = r;*/
+           
         }
         public void FiliereChange(object sender, EventArgs e)
         {
             var filiereSelected = picker.SelectedItem as string;
-            FiliereSelectionnée.Text = filiereSelected;
+            //FiliereSelectionnée.Text = filiereSelected;
+            int ii = filiereOperation.ReadFilieres().SingleOrDefault(f => f.Nom_filiere == filiereSelected).Id_fil;
+            listEtudiantModelForView2 = new ObservableCollection<EtudiantForView>(listEtudiantModelForView.Where(etu => etu.Id_fil ==ii));
+            if (listEtudiantModelForView2.Count>0)
+            {
+                ListEtudiants.ItemsSource = listEtudiantModelForView2;
+            }
         }
 
         public void AjouterEtudiant(object sender, EventArgs e)
@@ -193,7 +154,12 @@ namespace App4
                 var answer = await DisplayAlert("Question?", "Voulez-vous vraiment supprimer l'etuidiant " + etudiant.Nom, "Yes", "No");
                 if (answer)
                 {
+                    imageOperationImpl.DeleteImage(imageOperationImpl.ReadImage(etudiantOperation.ReadEtudiant(etudiant.Cne).Image));
+                    listEtudiantModelForView.Remove(listEtudiantModelForView.Single(cne=>etudiant.Cne==cne.Cne));
                     listEtudiantModel.Remove(etudiant);
+                    Etudiant ee = new Etudiant();
+                    ee.Cne = etudiant.Cne;
+                    etudiantOperation.DeleteEtudiant(ee);
                     await DisplayAlert("Success", etudiant.Nom + " a été supprimée", "Ok");
                 }
                 else

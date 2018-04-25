@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>App4.Droid</RootNamespace>
     <AssemblyName>App4.Android</AssemblyName>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -55,9 +55,6 @@
     </PackageReference>
     <PackageReference Include="Microcharts.Forms">
       <Version>0.7.1</Version>
-    </PackageReference>
-    <PackageReference Include="PCLStorage">
-      <Version>1.0.2</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp">
       <Version>1.60.0</Version>
@@ -109,7 +106,6 @@
     <ProjectReference Include="..\App4\App4.csproj">
       <Project>{E9A57F21-124A-4BE7-8557-A3285F2201B6}</Project>
       <Name>App4</Name>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -137,17 +133,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Password.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\intro_image01.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icons8_Classroom_3.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icons8_Add_User_Male_2.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

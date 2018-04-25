@@ -19,7 +19,7 @@ namespace App4
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.DB_PATH1))
+           /* using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.DB_PATH1))
             {
                 connection.CreateTable<Filiere>();
                 var filieres = connection.Table<Filiere>().ToList();
@@ -27,7 +27,7 @@ namespace App4
                 var etudiants = connection.Table<Etudiant>().ToList();
                 etudiantIListView.ItemsSource = etudiants;
                
-            }
+            }*/
         }
         public void EtudiantItem_Activeted(object sender, EventArgs e)
         {
